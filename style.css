@@ -1,0 +1,716 @@
+* {
+    box-sizing: border-box; /* 패딩/보더가 너비/높이에 포함되도록 설정 (레이아웃 계산 용이) */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%; /* 16px * 0.625 = 10px */
+}
+
+/* body는 기본 환경 설정 */
+body {
+    font-family: Pretendard;
+    background-color: #191919;
+    color: #fff;
+    margin: 0; 
+}
+
+/* 스크롤 영역을 확보하기 위해 섹션 높이를 지정 */
+section {
+    /* height: 100vh; 제거됨 - 내용물에 따라 높이 자동 조절 */
+    width: 100%;
+    padding-top: 100px; /* 섹션 간의 충분한 상단 간격 확보 */
+    box-sizing: border-box;
+}
+
+/* 모든 내용을 감싸는 컨테이너에 레이아웃 설정 */
+.container {
+    display: flex;
+    flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
+    max-width: 1440px; /* 최대 너비 설정 */
+    width: 90%;
+    height: auto;
+    margin: 0 auto;    /* 가운데 정렬 */
+    position: relative;
+    
+    /* background-color: yellow; <- 디버깅을 위해 잠시 남겨두었습니다. 실제 사용 시 제거하세요. */
+}
+
+img, video {
+    max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 설정 */
+    height: auto;    /* 이미지 비율을 유지 */
+    display: block;  /* 레이아웃 정렬을 쉽게 하기 위해 블록 요소로 변경 */
+}
+
+p{
+    font-size: 2rem; /* 20px */
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 5rem; /* 50px */
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+h2{
+    font-size: 2rem; /* 20px */
+    margin-bottom: 20px;
+    font-weight: 500;    
+}
+
+/* 768px 이상 화면일 때 적용될 스타일 (데스크탑/태블릿 레이아웃) */
+@media screen and (min-width: 768px) {
+    /* 예시: 폰트 크기 조정 */
+    body {
+        font-size: 112.5%; /* 18px */
+    }
+    
+    /* 예시: Flexbox나 Grid를 사용해 다단 레이아웃을 만듭니다 */
+    .content-area {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+/*첫 화면*/
+.mainimg{
+    display: flex;
+    flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
+    max-width: 1920px; /* 최대 너비 설정 */
+    width: 100%;
+    height: auto;
+    margin: 0 auto;    /* 가운데 정렬 */
+    position: relative;  
+}
+
+/* 첫번째 섹션 */
+section:nth-child(1) .container {
+    flex-direction: row; /* 내용을 가로로 배치 */
+    flex-wrap: wrap; /* 반응형을 위해 줄바꿈 허용 */
+    justify-content: space-between; /* 요소들을 양 끝으로 분산 */
+    align-items: flex-start; /* 상단 정렬 */
+}
+
+.Box1{
+    display: flex;
+    background-image: url('img/Box1.png');
+    position: static;
+    width: 100%;
+    height: auto;
+
+}
+
+/*.Logo1{
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    margin-right: 20px;
+    padding-top: 28px;
+} */
+
+.Text1{
+    z-index: 500;
+    display: flex;
+
+    flex-direction: column;
+
+    padding-left: 738px;
+    padding-top: 468px;
+    padding-bottom: 75px;
+}
+
+
+.glass1{
+    display: flex;
+    position: absolute;
+
+    padding-top: 385px;
+}
+
+/* 두번째 섹션 */
+.Text2{
+    display: flex;
+    position: static;
+    flex-direction: column;
+
+    padding-top: 201px;
+}
+
+.Box2{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: 80px;
+    align-items: flex-end;
+}
+
+.Box2 .index{
+    display: flex;
+    flex-direction: column;
+    max-width: 104px;
+    margin-right: 119px;
+
+}
+
+.Box2 .index .text{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.Box2 .index .text h1{
+    font-size: 3rem;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.Box2 .index .text h2{
+    font-size: 2rem;
+    margin-bottom: 0px;
+    font-weight: 300;    
+}
+
+.Box2 .table{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+
+}
+
+.Box2 .table p {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+    font-weight: 300; 
+}
+
+.Box2 .table img {
+    margin-bottom: 34px;
+}
+
+.Box2 .table .box1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.Box2 .table .box2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Box2 .etc{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 56px;
+    padding-left: 20px;
+}
+
+.Box2 .etc p{
+    position: absolute;
+    z-index: 500;
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: black;
+    padding-left: 12px;
+}
+
+/* 세번째 섹션 */
+.Text3{
+    display: flex;
+    position: static;
+    flex-direction: column;
+
+    padding-top: 200px;
+}
+
+.Box3{
+    display: flex;
+    position: static;
+    width: 100%;
+    flex-direction: column;
+    padding-top:120px;
+}
+
+.Box3 .first{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.Box3 .second{
+    display: flex;
+    flex-direction: row;
+}
+
+/* 네번쨰 섹션 */
+.Img4{
+    display: flex;
+    flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
+    max-width: 1920px; /* 최대 너비 설정 */
+    width: 100%;
+    height: auto;
+    margin: 0 auto;    /* 가운데 정렬 */
+    position: absolute;  
+    padding-top: 200px;
+}
+
+.Text4{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    z-index: 500;
+    padding-top: 200px;
+}
+
+.Box4{
+    display: flex;
+    position: relative;
+    z-index: 500;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1850px;
+}
+
+.Box4 h1{
+    font-size: 2rem; /* 20px */
+    font-weight: 400;
+}
+
+.Box4 p{
+    display: flex;
+    margin-left: 20px;
+    font-size: 2rem; /* 20px */
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.word4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+/* 다섯번쨰 섹션 */
+.Text5{
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+}
+
+.Text5 .textbox {
+     display: flex;
+     flex-direction: column;   
+     width: 100%;
+}
+
+.word5{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 185px;
+}
+
+/* 여섯번쨰 섹션 */
+.Text6{
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+}
+
+.word6 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 200px;
+}
+
+/* 일곱번째 섹션*/
+.Text7{
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+}
+
+.imgbox7{
+    margin-top: 164px;
+    margin-left: 240px;
+}
+
+/* 여덟번째 섹션*/
+.Box8 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 200px;
+}
+
+/* 아홉번째 섹션*/
+.Text9{
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+}
+
+.Text9 .textbox {
+     display: flex;
+     flex-direction: column;   
+     width: 100%;
+}
+
+.Img9{
+    padding-top: 188px;
+    display: flex;
+    flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
+    max-width: 1920px; /* 최대 너비 설정 */
+    width: 100%;
+    height: auto;
+    margin: 0 auto;    /* 가운데 정렬 */
+    position: relative;  
+}
+
+/* 열번째 섹션*/
+.Text10{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.Box10{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin-top: 200px;
+    margin-bottom: 300px;
+}
+
+/* 열한번째 섹션*/
+.Bg11{
+    background-image: url("img/mapbases/map11.png");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+}
+
+.Box11_1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 53px;
+    padding-bottom: 379px;
+
+}
+
+.Text11{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 50px;
+
+}
+
+.Key11{
+    display: flex;
+    margin-top: 167px;
+    width: 100%;
+    height: auto;
+    padding-left: 122px;
+}
+
+.Box11_2{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 171px;
+}
+
+.Box11_3{
+    display: flex;
+    flex-direction: column;
+}
+
+.mapkey{
+    position: relative;
+    z-index: 500;
+}
+
+.maprute{
+    background-image: url("img/mapbases/rute.png");
+    background-repeat: no-repeat;
+}
+
+.Box11_4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+    margin: 0 auto;
+    width: 100%;
+    padding: 607px;
+}
+.button11{
+    background-image: url("img/mapbases/button11.png");
+    background-repeat: no-repeat;
+    display: flex;
+    width: 172px;
+    height: 172px;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.button11 p{
+    font-size: 4rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.box11{
+    background-image: url("img/mapbases/box11.png");
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 270px;
+    justify-content: center;
+    align-items: center;
+}
+
+.h11{
+    display: flex;
+    flex-direction: row;
+}
+
+.h11 h1{
+    font-size: 7rem;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.box11 h2{
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+/* 열두번째 섹션*/
+.rock12{
+    padding-top: 200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rock12 h1{
+    font-size: 5rem;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-align: center;
+    margin-top: 28px;
+}
+
+.rock12 p{
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 300;
+    margin-bottom: 48px;
+    text-align: center;
+    margin-top: 36px;
+}
+
+.Box12{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.button12{
+    display: flex;
+    margin-top: 139px;
+}
+
+.Box12 p {
+    margin-top: 40px;
+    font-size: 3rem;
+    line-height: 1.5;
+    font-weight: 300;
+    margin-bottom: 142px;
+    text-align: center;
+}
+
+/* 열세번째 섹션*/
+.Text13{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 58px;   
+}
+
+.Box13{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 150px;
+}
+
+/* 열네번째 섹션 */
+.Text14{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 58px;
+    align-items: flex-end;   
+}
+
+.Box14{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 41px;
+    padding-bottom: 159px;
+}
+
+.Img14{
+    display: flex;
+    width: 832px;
+}
+
+/* 열다섯번째 섹션 */
+.Box15{
+    display: flex;
+    flex-direction: row;
+    margin-top: 41px;
+    padding-bottom: 126px;
+    justify-content: space-between;
+}
+
+.Text15{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 322px;
+}
+
+/* 열여섯번째 섹션 */
+.Box16{
+    background-image: url("img/authenticity.png");
+    background-repeat: no-repeat;
+    display: flex;
+}
+
+.Text16{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 450px;
+    margin-left: 852px;
+    padding-bottom: 948px;
+}
+
+/*열일곱번째*/
+.Box17{
+    background-image: url("img/authenticity2.png");
+    background-repeat: no-repeat;
+    margin-top: 164px;
+}
+
+.Text17{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 17px;
+    padding-bottom: 720px;
+}
+
+/* 열여덟번째 섹션 */
+.Box18{
+    display: flex;
+    flex-direction: row;
+    margin-top: 200px;
+    padding-bottom: 135px;
+    justify-content: space-between;
+}
+
+.Text18{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+}
+
+
+/* 열아홉번째 섹션 */
+.Img19{
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+}
+.Text19{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    text-align: center;
+    z-index: 500;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 431px;
+}
+
+/* 스물번째 섹션 */
+.Box20{
+    padding-bottom: 27px;
+}
+
+/* 스물한번째 섹션 */
+.Box21{
+    display: flex;
+    flex-direction: row;
+    padding-top: 287px;
+}
+
+.Text21{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+}
+.Text21 h1{
+    font-size: 5rem;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 184px;
+}
+.Text21 p{
+    font-size: 2.4rem;
+    line-height: 1.5;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+.text21{
+    display: flex;
+    flex-direction: row;
+    margin-left: 403px;
+}
