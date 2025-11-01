@@ -432,6 +432,10 @@ section:nth-child(1) .container {
     margin-top: 200px;
 }
 
+video {
+    pointer-events: none;
+}
+
 /* 아홉번째 섹션*/
 .Text9{
     display: flex;
@@ -663,6 +667,16 @@ section:nth-child(1) .container {
     margin-bottom: 0;
 }
 
+.text-active-color {
+    color: #7FFF6C !important; /* 중요한 색상이므로 !important를 사용하거나, 더 높은 선택자 사용 */
+}
+
+/* 2. Box11 내부 h1 기본 색상 설정 (흰색이 기본이지만 명시적으로 설정) */
+.box11 h1 {
+    color: #fff; /* 기본 텍스트 색상 */
+    transition: color 0.3s ease; /* 색상 변경 시 부드러운 전환 효과 추가 */
+}
+
 .box11 h2{
     font-size: 2rem;
     line-height: 1.5;
@@ -756,6 +770,37 @@ section:nth-child(1) .container {
 .Img14{
     display: flex;
     width: 832px;
+}
+
+/* 1. 스크롤 공간 확보 */
+#connection-sticky-wrapper {
+    /* 3단계 인터랙션이 진행될 충분한 스크롤 공간 확보 (3단계 * 100vh = 300vh) */
+    min-height: 300vh; 
+    position: relative;
+    /* 기존 .container 스타일 유지 */
+}
+
+/* 2. 고정될 콘텐츠 (이미지와 텍스트) */
+.connection-content-wrapper {
+    position: sticky;
+    top: 0; 
+    height: 100vh; /* 뷰포트 높이에 고정 */
+    width: 100%;
+    /* 내부 콘텐츠 정렬을 위해 flex 속성 추가 (필요 시) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+/* 3. Box14 내부의 기존 레이아웃을 sticky wrapper에 맞게 조정 */
+.connection-content-wrapper .Box14 {
+    /* Box14는 기존의 가로 정렬 레이아웃을 유지 */
+    width: 100%; 
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* 열다섯번째 섹션 */
