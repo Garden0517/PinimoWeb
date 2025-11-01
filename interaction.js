@@ -234,7 +234,144 @@ document.addEventListener("DOMContentLoaded", function() {
         // 스크롤 이벤트 리스너 등록
         window.addEventListener('scroll', handleConnectionScroll);
     }
-});
+
+    // ==========================================================
+    // 6. 열두 번째 섹션: 스크롤 시 이미지 변경 로직
+    // ==========================================================
+
+    const detectionTarget1 = document.querySelector('.rockImg12'); 
+    const rockImage12 = document.getElementById('rock-image-12');
+
+    if (detectionTarget1 && rockImage12) {
+        
+        const originalSrc = './img/aimasking/rock1.png'; 
+        const altSrc = './img/aimasking/rock2.png';      
+        
+        rockImage12.src = originalSrc; 
+        
+        // Observer 설정: 요소의 상단이 화면 중앙을 지날 때 감지하도록 수정
+        const rockOptions = {
+            root: null, 
+            // 뷰포트 하단을 50% 위로 끌어올려 화면 중앙에 기준선을 만듭니다.
+            rootMargin: '0px 0px -50% 0px', 
+            threshold: 0 // 기준선에 닿자마자 감지
+        };
+
+        const rockObserverCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.target === detectionTarget1) {
+                    
+                    if (entry.isIntersecting) {
+                        // 요소의 상단이 화면 중앙선에 진입했을 때 이미지 변경
+                        rockImage12.src = altSrc; 
+                        
+                        // 이미지가 한 번만 바뀌도록 관찰 중지
+                        observer.unobserve(detectionTarget1); 
+                        
+                    } 
+                }
+            });
+        };
+
+        const rockObserver = new IntersectionObserver(rockObserverCallback, rockOptions);
+        rockObserver.observe(detectionTarget1); 
+    }
+
+    // ==========================================================
+    // 7. 열두 번째 섹션: Sticky Scroll 이미지/텍스트 교체 로직 (#section-aimasking)
+    // ==========================================================
+
+    // 기존 배열 정의는 이미 파일 상단에 있다고 가정하고,
+    // 해당 요소를 선택하는 코드부터 시작합니다.
+
+    const aimaskingSection = document.getElementById('section-aimasking');
+    const aimaskingWrapper = document.getElementById('aimasking-sticky-wrapper'); 
+    const aimaskingPhoneImg = document.getElementById('aimasking-phone-img');
+    const aimaskingTextContent = document.getElementById('aimasking-text-content');
+    
+    // 이 배열들은 기존 파일에 이미 정의되어 있습니다.
+    const aimaskingImageGroups = [
+        './img/aimasking/phone0.png', 
+        './img/aimasking/phone1.png', 
+        './img/aimasking/phone2.png', 
+        './img/aimasking/phone3.png',  
+        './img/aimasking/phone4.png'  
+    ];
+    
+    const aimaskingTextContents = [
+        `AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.`, 
+        `AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.`, 
+        `내 얼굴 모습이나 가리고 싶은 배경 속 다른 사람의 얼굴을 가릴 수 있습니다.<br/>모자이크와 블러, 핀끌과 함께 안전하게 마스킹 해보세요.`, 
+        `상표, 도로명 주소, 차량 번호판, 기밀 정보 등 찍혀서는 안될 정보를<br/>쉽게 없앨 수 있습니다.`, 
+        `지저분하고 어지러운 배경을 가볍게 마스킹하여 안전의 깊이감을 더하세요.`
+    ];
+
+    if (aimaskingWrapper && aimaskingPhoneImg && aimaskingTextContent) {
+        
+        const totalStages = aimaskingImageGroups.length; // 5단계
+        let currentAimaskingStep = 0; 
+        
+        /**
+         * 지정된 단계에 맞춰 이미지와 텍스트를 업데이트하는 함수.
+         * 또한, 이미지와 텍스트 컨테이너에 등장 애니메이션 클래스를 추가합니다.
+         */
+        const updateAimaskingContent = (step) => {
+            if (step !== currentAimaskingStep) {
+                // 1. 이미지 및 텍스트 업데이트
+                aimaskingPhoneImg.src = aimaskingImageGroups[step];
+                aimaskingTextContent.innerHTML = aimaskingTextContents[step];
+                
+                // 2. 이미지 컨테이너에 'is-active' 클래스 추가 (CSS에서 opacity 1로 전환)
+                aimaskingPhoneImg.parentElement.classList.add('is-active');
+                
+                currentAimaskingStep = step;
+            }
+        };
+        
+        // 초기 이미지 설정
+        updateAimaskingContent(0);
+
+        // 3. 스크롤 이벤트 핸들러
+        const handleAimaskingScroll = () => {
+            // aimaskingWrapper는 sticky-wrapper (#aimasking-sticky-wrapper)
+            const rect = aimaskingWrapper.getBoundingClientRect();
+            
+            // 스크롤 진행 거리 (상단에서 얼마나 스크롤했는지)
+            const scrollProgress = -rect.top;
+            
+            // 인터랙션이 진행될 전체 스크롤 길이 
+            // (sticky-wrapper의 전체 높이 - 뷰포트 높이)
+            const interactionHeight = aimaskingWrapper.offsetHeight - window.innerHeight;
+            
+            // 스크롤 진행률 (0.0 ~ 1.0)
+            const progressRatio = Math.min(1, Math.max(0, scrollProgress / interactionHeight));
+
+            // 총 5단계이므로, 진행률을 5등분하여 단계를 결정합니다.
+            // (1 / 5 = 0.2)
+            let newStep;
+            
+            if (progressRatio < 0.2) {
+                newStep = 0;
+            } else if (progressRatio < 0.4) {
+                newStep = 1;
+            } else if (progressRatio < 0.6) {
+                newStep = 2;
+            } else if (progressRatio < 0.8) {
+                newStep = 3;
+            } else {
+                newStep = 4;
+            }
+
+            // 현재 단계와 다를 경우에만 이미지와 텍스트 업데이트
+            if (newStep !== currentAimaskingStep) {
+                updateAimaskingContent(newStep);
+            }
+        };
+
+        // 스크롤 이벤트 리스너 등록
+        window.addEventListener('scroll', handleAimaskingScroll);
+    }
+})
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const video = document.getElementById('myVideo');

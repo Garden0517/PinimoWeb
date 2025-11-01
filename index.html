@@ -12,14 +12,17 @@
     </div>
     <!--첫번째 섹션-->
     <section>
-        <div class="container animate-item">
+        <div class="container">
+            <div class="Logo1 animate-item delay-4">
+                <img src="./img/logo.png">
+            </div>
             <div class="Box1">
                 <div class="Text1">
-                    <h2>OVERVIEW</h2>
-                    <h1>
+                    <h2 class="animate-item delay-1">OVERVIEW</h2>
+                    <h1 class="animate-item delay-2">
                         지도와 장소 중심으로 기록하고<br/>공유하는 나만의 일상 
                     </h1>
-                    <p>
+                    <p class="animate-item delay-3">
                         Pinimo는 일상 속 여러 장소에서 겪는 자신만의 경험을 지도와 장소를 <br/>
                         통해 기록하여 안전하고 진솔하게 돌아볼 수 있는 새로운 SNS 플랫폼<br/>
                         입니다. 개인 경험을 감정 및 지도를 통해 기록하고 시각화하여 진정성<br/>
@@ -33,7 +36,7 @@
     <!--두번째 섹션-->
     <section>
         <div class="container">
-            <div class="Text2 animate-item">
+            <div class="Text2">
                 <h2>TRENDS</h2>
                 <h1>
                     새로운 세대의 없어서는 안될 필수템,<br/>다양한 삶의 경험을 공유하는 소셜 미디어
@@ -44,7 +47,7 @@
                     태어날 때부터 디지털 환경에 둘러싸여 자라난 새로운 세대들은 이를 빠르게 받아들여 스마트폰과<br/>
                     인터넷 등의 여러 매체를 자연스럽게 활용해 서로 끊임없이 소통하고 있습니다.<br/>
                 </p>
-                <div class="Box2 animate-item">
+                <div class="Box2">
                     <div class="index">
                         <div class="text">
                             <h1>2010년</h1>
@@ -79,12 +82,14 @@
                     </div>
                     <div class="table">
                         <p>used</p>
-                        <div class="box2">
+                        <div class="box2 animate-item">
                             <img src="./img/trends/box2.png">
                             <img src="./img/trends/box4.png">
                             <img src="./img/trends/box6.png">
                             <img src="./img/trends/box8.png">
-                            <img src="./img/trends/box10.png">
+                            <div class="box3 animate-item">
+                                <img src="./img/trends/box10.png">
+                            </div>
                         </div>
                     </div>
                     <div class="etc">
@@ -126,13 +131,32 @@
     <!--네번째 섹션--> 
     <section>
         <div class="Img4">
-            <img src="./img/problems/problems.png">
+            <div class="problems1 animate-item">
+                <img src="./img/problems/problems1.png">
+            </div>
+            <div class="problems2 animate-item">
+                <img src="./img/problems/problems2.png">
+            </div>
+            <div class="problems3 animate-item">
+                <img src="./img/problems/problems3.png">
+            </div>
+            <div class="problems4 animate-item">
+                <img src="./img/problems/problems4.png">
+            </div>
+            <div class="problems5 animate-item">
+                <img src="./img/problems/problems5.png">
+            </div>
+            <div class="problems6 animate-item">
+                <img src="./img/problems/problems6.png">
+            </div>
+
+            <!-- <img src="./img/problems/problems.png"> -->
         </div>
         <div class="container">
             <div class="Text4">
                 <h2>PROBLEMS</h2>
                 <h1>
-                       사용자들이 느끼는 피로감과</br>SNS가 지닌 강점과 가치
+                    사용자들이 느끼는 피로감과</br>SNS가 지닌 강점과 가치
                 </h1>
                 <p>
                     허위 및 조작된 정보, 끝 없는 콘텐츠와 정보, 인정받기 위한 욕구와 개인</br>
@@ -225,7 +249,7 @@
     <section>
         <div class="container">
             <div class="Box8">
-                <video id="myVideo" src="./video/pinimoment.mp4" autoplay muted playsinline></video>
+                <video id="myVideo" src="./video/pinimoment_ver2.mp4" autoplay muted playsinline></video>
             </div>
         </div>
     </section>
@@ -356,22 +380,30 @@
     </section> 
 
     <!--열두번째 섹션-->
-    <section>
+    <section id="section-aimasking">
         <div class="container">
             <div class="rock12">
-                <img src="./img/aimasking/rock1.png">
-                <h1>AI 사진 마스킹</br>정보의 정확도는 높이고</br>노출의 불안은 낮추다.</h1>
-                <p>AI 사진 마스킹을 통해 사진 속 개인 정보와 핵심 정보를</br>바로 수정 및 제거해보세요</p>
+                <div class="rockImg12">
+                    <img id="rock-image-12" src="./img/aimasking/rock1.png">
+                </div>
+                <div class="animate-item">
+                    <h1>AI 사진 마스킹</br>정보의 정확도는 높이고</br>노출의 불안은 낮추다.</h1>
+                    <p>AI 사진 마스킹을 통해 사진 속 개인 정보와 핵심 정보를</br>바로 수정 및 제거해보세요</p>
+                </div>
             </div>
+        </div>
 
-            <div class="Box12">
-                <div>
-                    <img src="./img/aimasking/phone1.png">
+        <div class="container" id="aimasking-sticky-wrapper">
+            <div class="aimasking-content-wrapper">
+                <div class="Box12">
+                    <div class="textbox12" id="aimasking-textbox">
+                        <h1>위험을 지우는 AI 마스킹</br>명확한 차이를 경험하세요</h1>
+                        <p id="aimasking-text-content">AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.</p>
+                    </div>
+                    <div class="Img12 animate-item" >
+                        <img id="aimasking-phone-img" src="./img/aimasking/phone0.png">
+                    </div>
                 </div>
-                <div class="button12">
-                    <img src="./img/aimasking/button1.png">
-                </div>
-                <p>AI 프롬프트를 입력하고  원하는 작업을 직접 지시합니다.</p>
             </div>
         </div>
     </section>    

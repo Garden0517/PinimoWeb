@@ -118,28 +118,24 @@ section:nth-child(1) .container {
 .Box1{
     display: flex;
     background-image: url('img/Box1.png');
-    position: static;
+    background-repeat: no-repeat;
     width: 100%;
     height: auto;
-
+    margin-top: 495px;
 }
 
-/*.Logo1{
+.Logo1{
     z-index: 1000;
     position: absolute;
     display: flex;
-    margin-right: 20px;
-    padding-top: 28px;
-} */
+    margin-top: 268px;
+}
 
 .Text1{
-    z-index: 500;
     display: flex;
-
     flex-direction: column;
-
     padding-left: 738px;
-    padding-top: 468px;
+    padding-top: 80px;
     padding-bottom: 75px;
 }
 
@@ -151,13 +147,29 @@ section:nth-child(1) .container {
     padding-top: 385px;
 }
 
+.animate-item.delay-1.is-visible {
+    transition-delay: 0.2s;
+}
+
+.animate-item.delay-2.is-visible {
+    transition-delay: 0.5s;
+}
+
+.animate-item.delay-3.is-visible {
+    transition-delay: 0.8s;
+}
+
+.animate-item.delay-4.is-visible {
+    transition-delay: 1.2s;
+}
+
 /* 두번째 섹션 */
 .Text2{
     display: flex;
     position: static;
     flex-direction: column;
 
-    padding-top: 201px;
+    padding-top: 200px;
 }
 
 .Box2{
@@ -197,9 +209,10 @@ section:nth-child(1) .container {
 
 .Box2 .table{
     display: flex;
+    position: relative;
     flex-direction: column;
     padding-left: 20px;
-
+    height: 510px;
 }
 
 .Box2 .table p {
@@ -209,7 +222,8 @@ section:nth-child(1) .container {
 }
 
 .Box2 .table img {
-    margin-bottom: 34px;
+    display: flex;
+    padding-bottom: 34px;
 }
 
 .Box2 .table .box1{
@@ -222,6 +236,60 @@ section:nth-child(1) .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.Box2 .table .box3{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 92px;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.Box2 .table .box3 img {
+    /* 이미지가 부모(.box3)의 너비를 100% 채우도록 고정 */
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+@keyframes chart-reveal {
+    0% {
+        width: 0;
+        opacity: 0; 
+    }
+    1% {
+        width: 0;
+        opacity: 1; 
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.Box2 .table .box2.animate-item.is-visible .box3 {
+    animation-delay: 550s; 
+    
+    /* chart-reveal 애니메이션을 실행합니다. */
+    animation: chart-reveal 0.8s ease-out forwards;
+    opacity: 1;
+    /* 애니메이션 실행 시 너비를 100%로 설정 */
+    width: 100%;
+}
+
+.Box2 .table .box2.animate-item.is-visible .box3 {
+    animation-delay: 550s; 
+    
+    /* chart-reveal 애니메이션을 실행합니다. */
+    animation: chart-reveal 0.8s ease-out forwards;
+    opacity: 1;
+    /* 애니메이션 실행 시 너비를 100%로 설정 */
+    width: 100%;
 }
 
 .Box2 .etc{
@@ -283,6 +351,51 @@ section:nth-child(1) .container {
     padding-top: 200px;
 }
 
+.problems1{
+    display: flex;
+    position: absolute;
+    margin-left: 960px;
+    margin-top: 0;
+    z-index: 100;
+}
+.problems2{
+    display: flex;
+    position: absolute;
+    margin-left: 0;
+    margin-top: 514px;
+    z-index: 200;
+}
+
+.problems3{
+    display: flex;
+    position: absolute;
+    margin-left: 960px;
+    margin-top: 794px;
+    z-index: 300;
+}
+.problems4{
+    display: flex;
+    position: absolute;
+    margin-left: 0;
+    margin-top: 1091px;
+    z-index: 400;
+}
+
+.problems5{
+    display: flex;
+    position: absolute;
+    margin-left: 960px;
+    margin-top: 1440px;
+    z-index: 500;
+}
+.problems6{
+    display: flex;
+    position: absolute;
+    margin-left: 0;
+    margin-top: 1500px;
+    z-index: 600;
+}
+
 .Text4{
     display: flex;
     position: relative;
@@ -294,11 +407,11 @@ section:nth-child(1) .container {
 .Box4{
     display: flex;
     position: relative;
-    z-index: 500;
+    z-index: 900;
     flex-direction: row;
     width: 100%;
     justify-content: center;
-    margin-top: 1850px;
+    margin-top: 1757px;
 }
 
 .Box4 h1{
@@ -600,7 +713,7 @@ video {
     z-index: 1000;
     margin: 0 auto;
     width: 100%;
-    padding: 607px;
+    padding-top: 607px;
 }
 
 .button11{
@@ -695,9 +808,13 @@ video {
     flex-direction: column;
 }
 
+.rockImg12{
+    display: flex;
+}
+
 .rock12 h1{
     font-size: 5rem;
-    line-height: 1.5;
+    line-height: 1.3;
     font-weight: 600;
     margin-bottom: 0;
     text-align: center;
@@ -708,30 +825,69 @@ video {
     font-size: 2rem;
     line-height: 1.5;
     font-weight: 300;
-    margin-bottom: 48px;
+    margin-bottom: 310px;
     text-align: center;
     margin-top: 36px;
 }
 
 .Box12{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.button12{
+.textbox12 h1{
     display: flex;
-    margin-top: 139px;
+    font-size: 5rem;
+    line-height: 1.3;
+    font-weight: 600;
+    margin-top: 430px;
 }
 
-.Box12 p {
-    margin-top: 40px;
-    font-size: 3rem;
-    line-height: 1.5;
+.textbox12 p{
+    font-size: 2rem;
+    line-height: 1.4;
     font-weight: 300;
-    margin-bottom: 142px;
-    text-align: center;
+    margin-top: 36px;
+}
+
+#aimasking-textbox {
+    position: relative; 
+    transform: translateY(50px); 
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; 
+    opacity: 1;
+}
+
+.is-textbox-moved {
+    transform: translateY(0); /* 원래 위치로 이동 (슬라이드 업) */
+    opacity: 1; /* 보이게 함 */
+}
+
+.Img12{
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.Img12.is-active {
+    opacity: 1;
+}
+
+/* 1. 스크롤 공간 확보 */
+#aimasking-sticky-wrapper {
+    min-height: 500vh; /* 4단계 인터랙션을 위한 충분한 높이 확보 */
+}
+
+/* 2. 고정될 콘텐츠 */
+.aimasking-content-wrapper {
+    position: sticky; /* 필수: 뷰포트 상단에 고정 */
+    top: 0; 
+    height: 100vh; /* 뷰포트 높이에 고정 */
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
 }
 
 /* 열세번째 섹션*/
@@ -747,6 +903,7 @@ video {
     display: flex;
     flex-direction: row;
     padding-bottom: 150px;
+    padding-top: 200px;
 }
 
 /* 열네번째 섹션 */
