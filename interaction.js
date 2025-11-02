@@ -411,34 +411,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const video = document.getElementById('myVideo');
-
-    // 1. controls 속성이 없는지 다시 한번 확인 (시작부터 컨트롤바를 숨깁니다.)
-    video.removeAttribute('controls');
-    
-    // 2. 영상 재생이 끝났을 때(ended 이벤트) 발생하는 동작 정의
-    video.addEventListener('ended', () => {
-        // 영상이 끝난 후 (대부분의 브라우저에서) 마지막 프레임에 멈추게 됩니다.
-        
-        // 혹시라도 controls가 다시 나타나는 것을 방지하기 위해 한 번 더 제거합니다.
-        video.removeAttribute('controls'); 
-
-        // 사용자 상호작용(클릭 등)을 완전히 막고 싶다면 추가합니다.
-        // video.style.pointerEvents = 'none'; 
-        
-        console.log('영상 재생이 끝났습니다.');
-    });
-
-    // 참고: 만약 재생 중간에 사용자가 일시정지를 못하게 하려면 아래 코드를 추가할 수 있습니다.
-    video.addEventListener('pause', () => {
-        if (video.currentTime < video.duration) {
-            // 재생이 끝나지 않은 상태에서 일시정지 시, 바로 다시 재생
-            video.play();
-        }
-    });
-});
-
 document.addEventListener("DOMContentLoaded", function() {
     const video1 = document.getElementById('user-video');
     const playButton = document.getElementById('play-button-overlay');
@@ -483,5 +455,21 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // 초기 상태 설정
     playButton.textContent = ' ▷\tCLICK'; 
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+    // 2. HTML에서 'Topbutton' 클래스를 가진 요소를 찾습니다.
+    const topButton = document.querySelector('.Topbutton');
+
+    // 3. 버튼이 존재하는지 확인하고 클릭 이벤트를 연결합니다.
+    if (topButton) {
+        topButton.addEventListener('click', function() {
+            // 4. window.scrollTo()를 사용하여 최상단으로 이동합니다.
+            window.scrollTo({
+                top: 0,         // Y축 위치를 0 (최상단)으로 설정
+                left: 0,        // X축 위치를 0으로 설정
+                behavior: 'smooth' // 부드러운 스크롤 애니메이션 적용
+            });
+        });
+    }
 });
