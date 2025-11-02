@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="Topbutton">
+        <img src="./img/topbutton.png">
+    </div>
     <div class="mainimg">
         <img src="./img/iPhone-15-Pro.png">
     </div>
@@ -70,7 +73,7 @@
                             <h2>약 56.6억 명</h2>
                         </div>
                     </div>
-                    <div class="table">
+                    <div class="table" style="margin-left: 20px;">
                         <p>not used</p>
                         <div class="box1">
                             <img src="./img/trends/box1.png">
@@ -82,12 +85,12 @@
                     </div>
                     <div class="table">
                         <p>used</p>
-                        <div class="box2 animate-item">
-                            <img src="./img/trends/box2.png">
-                            <img src="./img/trends/box4.png">
-                            <img src="./img/trends/box6.png">
-                            <img src="./img/trends/box8.png">
-                            <div class="box3 animate-item">
+                        <div class="box2">
+                            <img src="./img/trends/box2.png" class="animate-item-2 delay-1">
+                            <img src="./img/trends/box4.png" class="animate-item-2 delay-2">
+                            <img src="./img/trends/box6.png" class="animate-item-2 delay-3">
+                            <img src="./img/trends/box8.png" class="animate-item-2 delay-4">
+                            <div class="box3 animate-item-2 delay-5">
                                 <img src="./img/trends/box10.png">
                             </div>
                         </div>
@@ -544,7 +547,18 @@
     <section>
         <div class="container">
             <div class="Box20">
-                <img src="./img/video.png">
+                <div id="video-container">
+                    <video src="./video/pinimo.mp4" 
+                        id="user-video" 
+                        loop 
+                        muted
+                        playsinline>
+                        </video>
+                    
+                    <div id="play-button-overlay">
+                            ▷&nbsp;CLICK
+                    </div>
+                </div>
             </div>
         </div>
     </section>

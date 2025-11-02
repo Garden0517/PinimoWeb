@@ -22,6 +22,25 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // ==========================================================
+    // 1-2. 새로운 섹션 등장 효과 로직 (.animate-item-2 -> is-visible-2)
+    // ==========================================================
+    const animateItems2 = document.querySelectorAll('.animate-item-2'); // ✨ 새로운 대상 클래스
+    // 옵션은 같거나 다르게 설정할 수 있습니다. (여기서는 동일하게 사용)
+    
+    const observerCallback2 = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible-2'); // ✨ 새로운 애니메이션 클래스
+                observer.unobserve(entry.target); 
+            }
+        });
+    };
+    const observer2 = new IntersectionObserver(observerCallback2, observerOptions);
+    animateItems2.forEach(item => {
+        observer2.observe(item);
+    });
+
+    // ==========================================================
     // 2. 여섯 번째 섹션: Sticky Scroll 이미지 교체 로직 (#section-solution)
     // ==========================================================
     const solutionSection = document.getElementById('section-solution');
@@ -399,4 +418,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             video.play();
         }
     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const video1 = document.getElementById('user-video');
+    const playButton = document.getElementById('play-button-overlay');
+    
+    // 오버레이가 아닌 '비디오' 요소 자체에 클릭 이벤트 리스너를 추가합니다.
+    video1.addEventListener('click', function() {
+        
+        // 첫 클릭 시 음소거 해제 (비디오 클릭 시에도 동일하게 적용)
+        if (video1.muted) {
+            video1.muted = false;
+        }
+
+        // 재생/일시정지 상태 토글
+        if (video1.paused) {
+            // 멈춰있으면 재생
+            video1.play()
+                .then(() => {
+                    // 재생 시작 시 오버레이 숨김을 위해 클래스 추가
+                    playButton.classList.add('is-playing');
+                });
+        } else {
+            // 재생 중이면 일시정지
+            video1.pause();
+            // 일시정지 시 오버레이 표시를 위해 클래스 제거
+            playButton.classList.remove('is-playing');
+        }
+    });
+
+    // 오버레이 클릭 이벤트는 그대로 두어 초기 재생을 시작하게 합니다.
+    // (선택 사항: 초기 재생은 비디오 클릭으로 대체 가능)
+    playButton.addEventListener('click', function(e) {
+        // 오버레이가 클릭되면 video 요소로 클릭 이벤트를 전달합니다.
+        // 또는, 위 video.addEventListener의 로직을 직접 실행해도 됩니다.
+        video1.click(); 
+    });
+    
+    // 영상 재생이 끝났을 때 자동 정지 및 초기화 (변경 없음)
+    video1.addEventListener('ended', function() {
+        playButton.classList.remove('is-playing');
+        video1.currentTime = 0; 
+    });
+    
+    // 초기 상태 설정
+    playButton.textContent = ' ▷\tCLICK'; 
 });

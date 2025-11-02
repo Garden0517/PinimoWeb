@@ -53,12 +53,23 @@ h1{
     font-size: 5rem; /* 50px */
     margin-bottom: 40px;
     font-weight: 700;
+    line-height: 1.3;
 }
 
 h2{
     font-size: 2rem; /* 20px */
     margin-bottom: 20px;
     font-weight: 500;    
+}
+
+.Topbutton{
+    position: fixed;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    margin-left: 1760px;
+    margin-top: 850px;
+    z-index:300;
 }
 
 /* 768px 이상 화면일 때 적용될 스타일 (데스크탑/태블릿 레이아웃) */
@@ -96,6 +107,19 @@ h2{
     transform: translateY(0); 
 }
 
+.animate-item-2 {
+    opacity: 0;
+    /* X축으로 50px 오른쪽으로 이동 */
+    transform: translateX(-470px); 
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 등장 상태: 제자리로 이동하며 보이게 하기 */
+.animate-item-2.is-visible-2 {
+    opacity: 1;
+    transform: translateX(0); /* 원래 위치로 복귀 */
+}
+
 /*첫 화면*/
 .mainimg{
     display: flex;
@@ -104,7 +128,8 @@ h2{
     width: 100%;
     height: auto;
     margin: 0 auto;    /* 가운데 정렬 */
-    position: relative;  
+    position: relative; 
+    z-index: 500; 
 }
 
 /* 첫번째 섹션 */
@@ -211,7 +236,6 @@ section:nth-child(1) .container {
     display: flex;
     position: relative;
     flex-direction: column;
-    padding-left: 20px;
     height: 510px;
 }
 
@@ -228,6 +252,8 @@ section:nth-child(1) .container {
 
 .Box2 .table .box1{
     display: flex;
+    position: relative;
+    z-index: 500;
     flex-direction: column;
     align-items: flex-end;
 }
@@ -240,11 +266,12 @@ section:nth-child(1) .container {
 
 .Box2 .table .box3{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: flex-start;
     height: 92px;
-    width: 0;
-    opacity: 0;
+    width: 467px;
+    opacity: 1;
     overflow: hidden;
 }
 
@@ -256,40 +283,20 @@ section:nth-child(1) .container {
     display: block;
 }
 
-
-@keyframes chart-reveal {
-    0% {
-        width: 0;
-        opacity: 0; 
-    }
-    1% {
-        width: 0;
-        opacity: 1; 
-    }
-    100% {
-        width: 100%;
-        opacity: 1;
-    }
+.animate-item-2.delay-1.is-visible-2 {
+    transition-delay: -0.5s;
 }
-
-.Box2 .table .box2.animate-item.is-visible .box3 {
-    animation-delay: 550s; 
-    
-    /* chart-reveal 애니메이션을 실행합니다. */
-    animation: chart-reveal 0.8s ease-out forwards;
-    opacity: 1;
-    /* 애니메이션 실행 시 너비를 100%로 설정 */
-    width: 100%;
+.animate-item-2.delay-2.is-visible-2 {
+    transition-delay: -0.1s;
 }
-
-.Box2 .table .box2.animate-item.is-visible .box3 {
-    animation-delay: 550s; 
-    
-    /* chart-reveal 애니메이션을 실행합니다. */
-    animation: chart-reveal 0.8s ease-out forwards;
-    opacity: 1;
-    /* 애니메이션 실행 시 너비를 100%로 설정 */
-    width: 100%;
+.animate-item-2.delay-3.is-visible-2 {
+    transition-delay: 0.4s;
+}
+.animate-item-2.delay-4.is-visible-2 {
+    transition-delay: 0.9s;
+}
+.animate-item-2.delay-5.is-visible-2 {
+    transition-delay: 1.3s;
 }
 
 .Box2 .etc{
@@ -452,8 +459,7 @@ section:nth-child(1) .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 185px;
-    padding-bottom: 200px;
+    padding-bottom: 300px;
 }
 
 /* 여섯번쨰 섹션 */
@@ -523,11 +529,12 @@ section:nth-child(1) .container {
     margin-bottom: 0px; /* 예시 마진값 */
 }
 
+
 /* 일곱번째 섹션*/
 .Text7{
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+
 }
 
 .imgbox7{
@@ -1033,13 +1040,14 @@ video {
     position: relative;
     margin: 0 auto;
     width: 100%;
+    z-index: 500;
 }
 .Text19{
     display: flex;
     position: absolute;
     flex-direction: column;
     text-align: center;
-    z-index: 500;
+    z-index: 800;
     margin: 0 auto;
     width: 100%;
     padding-top: 431px;
@@ -1048,6 +1056,40 @@ video {
 /* 스물번째 섹션 */
 .Box20{
     padding-bottom: 27px;
+}
+
+#video-container {
+    position: relative; /* 자식 요소인 버튼을 영상 위에 띄우기 위함 */
+    width: 100%; /* 원하는 너비 설정 */
+    height: auto; /* 원하는 높이 설정 */
+}
+
+#user-video {
+    width: 100%;
+    height: 100%;
+    /* 사용자의 조작을 막기 위해 마우스 이벤트를 비활성화할 수 있습니다. */
+    /* pointer-events: none; */ 
+}
+
+#play-button-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 (선택 사항) */
+    color: #7FFF6C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;    
+    font-weight: 600;
+    cursor: pointer; /* 클릭 가능하다는 표시 */
+    z-index: 10; /* 영상 위에 위치하도록 설정 */
+}
+
+#play-button-overlay.is-playing {
+    opacity: 0;
 }
 
 /* 스물한번째 섹션 */
