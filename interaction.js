@@ -310,7 +310,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // 이 배열들은 기존 파일에 이미 정의되어 있습니다. (생략하지 않고 포함)
     const aimaskingImageGroups = [
-        './img/aimasking/phone0.png',
         './img/aimasking/phone1.png',
         './img/aimasking/phone2.png',
         './img/aimasking/phone3.png',
@@ -318,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
     
     const aimaskingTextContents = [
-        `AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.`,
         `AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.`,
         `내 얼굴 모습이나 가리고 싶은 배경 속 다른 사람의 얼굴을 가릴 수 있습니다.<br/>모자이크와 블러, 핀끌과 함께 안전하게 마스킹 해보세요.`,
         `상표, 도로명 주소, 차량 번호판, 기밀 정보 등 찍혀서는 안될 정보를<br/>쉽게 없앨 수 있습니다.`,
@@ -385,19 +383,17 @@ document.addEventListener("DOMContentLoaded", function() {
             const progressRatio = Math.min(1, Math.max(0, scrollProgress / interactionHeight));
     
             // 총 5단계이므로, 진행률을 5등분하여 단계를 결정합니다.
-            // (1 / 5 = 0.2)
+            // (1 / 4 = 0.25)
             let newStep;
     
-            if (progressRatio < 0.2) {
+            if (progressRatio < 0.25) {
                 newStep = 0;
-            } else if (progressRatio < 0.4) {
+            } else if (progressRatio < 0.5) {
                 newStep = 1;
-            } else if (progressRatio < 0.6) {
+            } else if (progressRatio < 0.75) {
                 newStep = 2;
-            } else if (progressRatio < 0.8) {
-                newStep = 3;
             } else {
-                newStep = 4;
+                newStep = 3;
             }
     
             // 현재 단계와 다를 경우에만 이미지와 텍스트 업데이트 (애니메이션 트리거)
@@ -473,3 +469,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+        
+        // 감지할 대상 (바 차트 ul)을 선택합니다.
+        const barChartElement = document.querySelector('.animate-bar-chart');
+        
+        // ----------------------------------------------------------
+        // Intersection Observer 설정
+        // ----------------------------------------------------------
+        
+        // threshold: 0.5 (요소의 50%가 뷰포트와 교차할 때 트리거)
+        // 이는 요소가 대략 화면 중앙에 왔을 때를 의미합니다.
+        const observerOptions = { 
+            root: null, 
+            rootMargin: '0px', 
+            threshold: 0.5 // 요소의 절반(50%)이 보일 때
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // isIntersecting: 요소가 threshold 비율만큼 교차하는지 여부
+                if (entry.isIntersecting) {
+                    // 1. 교차하면 .active 클래스를 부여하여 애니메이션 시작
+                    entry.target.classList.add('active'); 
+                    
+                    // 2. 한 번 실행 후에는 관찰을 중지하여 불필요한 재실행 방지
+                    observer.unobserve(entry.target); 
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // 바 차트 요소를 관찰 시작
+        if (barChartElement) {
+            observer.observe(barChartElement);
+        }
+    });
