@@ -1196,6 +1196,7 @@ video {
     display: flex;
     flex-direction: row;
     padding-top: 287px;
+    height: 100vh;
 }
 
 .Text21{
