@@ -919,65 +919,61 @@ video {
     margin-top: 36px;
 }
 
-.Box12{
+
+.box12 {
     display: flex;
+    flex-direction: column;
+    justify-content: center; /* 텍스트를 수직 중앙 정렬 */
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.textbox12 h1{
-    display: flex;
-    font-size: 5rem;
-    line-height: 1.3;
-    font-weight: 600;
-    margin-top: 430px;
-}
-
-.textbox12 p{
-    font-size: 2rem;
-    line-height: 1.4;
-    font-weight: 300;
-    margin-top: 36px;
-}
-
-#aimasking-textbox {
+    height: 100vh; /* 각 박스가 화면 전체 높이를 차지하도록 설정 */
+    padding: 0 0;
     position: relative; 
-    transform: translateY(50px); 
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out; 
-    opacity: 1;
+    /* 기존 overflow-y: scroll; 제거 */
+    
+    /* **핵심:** 스크롤 스내핑 자식 속성 */
+    scroll-snap-align: start; /* 각 박스의 시작 지점이 스크롤 뷰포트의 시작 지점에 맞춰지도록 설정 */
 }
-
-.is-textbox-moved {
-    transform: translateY(0); /* 원래 위치로 이동 (슬라이드 업) */
-    opacity: 1; /* 보이게 함 */
-}
-
-.Img12{
+.textbox12{
     display: flex;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    flex-direction: column;
+    justify-content: center;
+    height: 1080px;
 }
-
-.Img12.is-active {
-    opacity: 1;
+.img12 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    /* height: 1080px; 대신 */
+    height: 100vh; /* 화면 높이에 맞추기 */
 }
-
-/* 1. 스크롤 공간 확보 */
-#aimasking-sticky-wrapper {
-    min-height: 500vh; /* 4단계 인터랙션을 위한 충분한 높이 확보 */
-}
-
-/* 2. 고정될 콘텐츠 */
-.aimasking-content-wrapper {
-    position: sticky; /* 필수: 뷰포트 상단에 고정 */
-    top: 0; 
-    height: 100vh; /* 뷰포트 높이에 고정 */
+.all12{
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
 }
+.all-box12 {
+    width: 50%;
+    height: 100vh; /* 화면 전체 높이로 설정 */
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll; /* 세로 스크롤 허용 */
+    
+    /* **핵심:** 스크롤 스내핑 부모 속성 */
+    scroll-snap-type: y mandatory; 
+
+    /* 1. 웹킷 계열 (Chrome, Safari, Edge 구버전) */
+    &::-webkit-scrollbar {
+        display: none; /* 스크롤 바 자체를 숨김 */
+    }
+
+    /* 2. 마이크로소프트/IE (Edge 최신 버전도 지원) */
+    -ms-overflow-style: none; /* IE 및 Edge에서 스크롤 바 숨김 */
+    
+    /* 3. 파이어폭스 (Firefox) */
+    scrollbar-width: none; /* 파이어폭스에서 스크롤 바 너비를 없앰 */
+}
+
 
 /* 열세번째 섹션*/
 .Text13{

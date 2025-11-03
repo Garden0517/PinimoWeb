@@ -300,112 +300,54 @@ document.addEventListener("DOMContentLoaded", function() {
     // 7. 열두 번째 섹션: Sticky Scroll 이미지/텍스트 교체 로직 (#section-aimasking)
     // ==========================================================
 
-    const aimaskingSection = document.getElementById('section-aimasking');
-    const aimaskingWrapper = document.getElementById('aimasking-sticky-wrapper');
-    const aimaskingPhoneImg = document.getElementById('aimasking-phone-img');
-    const aimaskingTextContent = document.getElementById('aimasking-text-content');
-    
-    // 텍스트 컨테이너 (Box12 내부의 textbox12)
-    const aimaskingTextContainer = document.getElementById('aimasking-textbox'); 
-    
-    // 이 배열들은 기존 파일에 이미 정의되어 있습니다. (생략하지 않고 포함)
-    const aimaskingImageGroups = [
-        './img/aimasking/phone1.png',
-        './img/aimasking/phone2.png',
-        './img/aimasking/phone3.png',
-        './img/aimasking/phone4.png'
-    ];
-    
-    const aimaskingTextContents = [
-        `AI 프롬포트를 입력하고 원하는 작업을 직접 지시합니다.`,
-        `내 얼굴 모습이나 가리고 싶은 배경 속 다른 사람의 얼굴을 가릴 수 있습니다.<br/>모자이크와 블러, 핀끌과 함께 안전하게 마스킹 해보세요.`,
-        `상표, 도로명 주소, 차량 번호판, 기밀 정보 등 찍혀서는 안될 정보를<br/>쉽게 없앨 수 있습니다.`,
-        `지저분하고 어지러운 배경을 가볍게 마스킹하여 안전의 깊이감을 더하세요.`
-    ];
-    
-    if (aimaskingWrapper && aimaskingPhoneImg && aimaskingTextContent && aimaskingTextContainer) {
-    
-        const totalStages = aimaskingImageGroups.length; // 5단계
-        let currentAimaskingStep = -1; // 초기값을 -1로 설정하여 첫 updateAimaskingContent(0) 호출 시 로직이 실행되도록 함
-    
-        /**
-         * 지정된 단계에 맞춰 이미지와 텍스트를 업데이트하는 함수.
-         * 애니메이션 효과를 위해 'is-active' 클래스를 제어합니다.
-         */
-        const updateAimaskingContent = (step) => {
-            if (step !== currentAimaskingStep) {
+    // 1. 필요한 요소들을 선택합니다.
+        const scrollContainer = document.querySelector('.all-box12'); // 스크롤이 발생하는 컨테이너
+        const textBoxes = document.querySelectorAll('.box12'); // 각 스크롤 섹션 (텍스트 박스)
+        const targetImage = document.querySelector('.img12 img'); // 이미지가 변경될 <img> 태그
+
+        // 2. 변경될 이미지 경로를 순서대로 배열로 만듭니다.
+        // .box의 순서와 일치해야 합니다.
+        const imagePaths = [
+            './img/aimasking/phone1.png', // 첫 번째 .box에 대응
+            './img/aimasking/phone2.png', // 두 번째 .box에 대응
+            './img/aimasking/phone3.png', // 세 번째 .box에 대응
+            './img/aimasking/phone4.png'  // 네 번째 .box에 대응
+        ];
+
+        // 3. 텍스트 박스 상단이 화면 중앙에 도달하는 기준선 (기준점)을 계산합니다.
+        // 화면 높이(뷰포트 높이)의 절반입니다.
+        const viewportCenter = window.innerHeight / 2;
+
+        // 4. 스크롤 이벤트를 감지하여 이미지 변경 함수를 실행합니다.
+        scrollContainer.addEventListener('scroll', () => {
+            
+            // textBoxes를 순회하며 현재 활성화된 박스를 찾습니다.
+            textBoxes.forEach((box, index) => {
                 
-                // 1. 현재 활성화된 클래스 제거하여 투명도 0으로 (페이드 아웃 시작)
-                // Note: aimaskingPhoneImg.parentElement은 .Img12 div입니다.
-                aimaskingPhoneImg.parentElement.classList.remove('is-active');
-                aimaskingTextContainer.classList.remove('is-active');
-    
-                // 2. 내용 업데이트
-                // 이미지가 보이지 않는 상태(opacity: 0)에서 내용 교체
-                aimaskingPhoneImg.src = aimaskingImageGroups[step];
-                aimaskingTextContent.innerHTML = aimaskingTextContents[step];
+                // getBoundingClientRect()로 현재 뷰포트 대비 요소의 위치를 가져옵니다.
+                const boxRect = box.getBoundingClientRect();
                 
-                // 3. 짧은 지연 후 'is-active' 클래스 다시 추가 (페이드 인 트리거)
-                // 브라우저가 클래스 제거 및 내용 변경을 인식할 시간을 줌 (약 50ms)
-                setTimeout(() => {
-                    aimaskingPhoneImg.parentElement.classList.add('is-active');
-                    aimaskingTextContainer.classList.add('is-active');
-                }, 50);
-    
-                currentAimaskingStep = step;
-            }
-        };
-    
-        // 초기 이미지 설정 시에도 애니메이션 적용을 위해 setTimeout 없이 초기 상태만 설정합니다.
-        // CSS에 의해 초기 opacity가 0이므로, 처음 한 번은 클래스를 바로 추가해줘야 합니다.
-        // updateAimaskingContent(-1); 대신 아래와 같이 직접 처리하거나,
-        // currentAimaskingStep = 0; 으로 초기값을 변경하지 않도록 합니다.
-        aimaskingPhoneImg.src = aimaskingImageGroups[0];
-        aimaskingTextContent.innerHTML = aimaskingTextContents[0];
-        aimaskingPhoneImg.parentElement.classList.add('is-active');
-        aimaskingTextContainer.classList.add('is-active');
-        currentAimaskingStep = 0;
-    
-    
-        // 3. 스크롤 이벤트 핸들러
-        const handleAimaskingScroll = () => {
-            // aimaskingWrapper는 sticky-wrapper (#aimasking-sticky-wrapper)
-            const rect = aimaskingWrapper.getBoundingClientRect();
-    
-            // 스크롤 진행 거리 (상단에서 얼마나 스크롤했는지)
-            const scrollProgress = -rect.top;
-    
-            // 인터랙션이 진행될 전체 스크롤 길이
-            // (sticky-wrapper의 전체 높이 - 뷰포트 높이)
-            const interactionHeight = aimaskingWrapper.offsetHeight - window.innerHeight;
-    
-            // 스크롤 진행률 (0.0 ~ 1.0)
-            const progressRatio = Math.min(1, Math.max(0, scrollProgress / interactionHeight));
-    
-            // 총 5단계이므로, 진행률을 5등분하여 단계를 결정합니다.
-            // (1 / 4 = 0.25)
-            let newStep;
-    
-            if (progressRatio < 0.25) {
-                newStep = 0;
-            } else if (progressRatio < 0.5) {
-                newStep = 1;
-            } else if (progressRatio < 0.75) {
-                newStep = 2;
-            } else {
-                newStep = 3;
-            }
-    
-            // 현재 단계와 다를 경우에만 이미지와 텍스트 업데이트 (애니메이션 트리거)
-            if (newStep !== currentAimaskingStep) {
-                updateAimaskingContent(newStep);
-            }
-        };
-    
-        // 스크롤 이벤트 리스너 등록
-        window.addEventListener('scroll', handleAimaskingScroll);
-    }
-})
+                // boxRect.top: 요소의 상단 모서리가 뷰포트 상단으로부터 얼마나 떨어져 있는지 (픽셀 단위)
+                
+                // 텍스트 박스의 상단이 화면 중앙 (viewportCenter)에 도달했는지 확인합니다.
+                // **boxRect.top < viewportCenter**: 상단이 중앙을 지나서 위로 올라감
+                // **boxRect.bottom > viewportCenter**: 하단이 아직 중앙을 지나지 않아 현재 뷰포트 중앙에 걸쳐 있음
+                
+                // 즉, 현재 박스가 뷰포트 중앙선을 감싸고 있을 때 (박스의 상단은 중앙을 지났고, 하단은 중앙을 지나지 않았을 때)
+                if (boxRect.top < viewportCenter && boxRect.bottom > viewportCenter) {
+                    
+                    // 해당 인덱스에 맞는 이미지 경로로 변경합니다.
+                    if (imagePaths[index]) {
+                        targetImage.src = imagePaths[index];
+                    }
+                }
+            });
+        });
+        
+        // 페이지 로드 시 첫 번째 이미지를 강제로 로드합니다. (초기 설정)
+        targetImage.src = imagePaths[0];
+
+    })
 
 document.addEventListener("DOMContentLoaded", function() {
     const video1 = document.getElementById('user-video');
