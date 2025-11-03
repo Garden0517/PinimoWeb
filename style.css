@@ -922,7 +922,7 @@ video {
         /* 1. 스크롤을 잡아둘 섹션 */
         .scroll-interaction-section {
             /* 텍스트 박스 4개 * 100vh + 시작/종료 여유 공간 */
-            height: calc(100vh * 5 + 1px); /* 4개의 텍스트를 한 화면씩 보여줄 높이 확보 */
+            height: calc(100vh * 4 + 1px); /* 4개의 텍스트를 한 화면씩 보여줄 높이 확보 */
             position: relative;
         }
 
@@ -1223,3 +1223,4 @@ video {
     margin-left: 403px;
 
 }
+
