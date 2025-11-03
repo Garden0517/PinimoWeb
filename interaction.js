@@ -300,54 +300,79 @@ document.addEventListener("DOMContentLoaded", function() {
     // 7. 열두 번째 섹션: Sticky Scroll 이미지/텍스트 교체 로직 (#section-aimasking)
     // ==========================================================
 
-    // 1. 필요한 요소들을 선택합니다.
-        const scrollContainer = document.querySelector('.all-box12'); // 스크롤이 발생하는 컨테이너
-        const textBoxes = document.querySelectorAll('.box12'); // 각 스크롤 섹션 (텍스트 박스)
-        const targetImage = document.querySelector('.img12 img'); // 이미지가 변경될 <img> 태그
-
-        // 2. 변경될 이미지 경로를 순서대로 배열로 만듭니다.
-        // .box의 순서와 일치해야 합니다.
-        const imagePaths = [
-            './img/aimasking/phone1.png', // 첫 번째 .box에 대응
-            './img/aimasking/phone2.png', // 두 번째 .box에 대응
-            './img/aimasking/phone3.png', // 세 번째 .box에 대응
-            './img/aimasking/phone4.png'  // 네 번째 .box에 대응
-        ];
-
-        // 3. 텍스트 박스 상단이 화면 중앙에 도달하는 기준선 (기준점)을 계산합니다.
-        // 화면 높이(뷰포트 높이)의 절반입니다.
-        const viewportCenter = window.innerHeight / 2;
-
-        // 4. 스크롤 이벤트를 감지하여 이미지 변경 함수를 실행합니다.
-        scrollContainer.addEventListener('scroll', () => {
-            
-            // textBoxes를 순회하며 현재 활성화된 박스를 찾습니다.
-            textBoxes.forEach((box, index) => {
-                
-                // getBoundingClientRect()로 현재 뷰포트 대비 요소의 위치를 가져옵니다.
-                const boxRect = box.getBoundingClientRect();
-                
-                // boxRect.top: 요소의 상단 모서리가 뷰포트 상단으로부터 얼마나 떨어져 있는지 (픽셀 단위)
-                
-                // 텍스트 박스의 상단이 화면 중앙 (viewportCenter)에 도달했는지 확인합니다.
-                // **boxRect.top < viewportCenter**: 상단이 중앙을 지나서 위로 올라감
-                // **boxRect.bottom > viewportCenter**: 하단이 아직 중앙을 지나지 않아 현재 뷰포트 중앙에 걸쳐 있음
-                
-                // 즉, 현재 박스가 뷰포트 중앙선을 감싸고 있을 때 (박스의 상단은 중앙을 지났고, 하단은 중앙을 지나지 않았을 때)
-                if (boxRect.top < viewportCenter && boxRect.bottom > viewportCenter) {
-                    
-                    // 해당 인덱스에 맞는 이미지 경로로 변경합니다.
-                    if (imagePaths[index]) {
-                        targetImage.src = imagePaths[index];
-                    }
-                }
-            });
-        });
+    const allBox = document.querySelector('.all-box12');
+    const textBoxes = document.querySelectorAll('.box12');
+    const targetImage = document.querySelector('.img12 img');
+    const interactionSection = document.querySelector('.scroll-interaction-section');
+    
+    const imagePaths = [
+        './img/aimasking/phone1.png',
+        './img/aimasking/phone2.png',
+        './img/aimasking/phone3.png',
+        './img/aimasking/phone4.png'
+    ];
+    
+    const totalBoxCount = textBoxes.length;
+    const screenHeight = window.innerHeight; 
+    
+    // 💡 실제 텍스트가 이동할 총 거리 (4개 박스 중 3번의 전환이 필요: 300vh)
+    const maxMovement = (totalBoxCount - 1) * screenHeight; 
+    
+    // 💡 초기 100vh 동안 첫 번째 박스 고정 후 애니메이션 시작
+    const initialDelay = screenHeight; 
+    
+    // 💡 이미지 전환 기준점: 화면 높이의 20% 지점 (하단에서 80% 올라올 때)
+    const imageChangeThreshold = screenHeight * 0.2; 
+    
+    let currentImageIndex = -1; 
+    
+    function handleScroll() {
+        // 섹션의 뷰포트 위치 정보 가져오기
+        const sectionRect = interactionSection.getBoundingClientRect(); 
         
-        // 페이지 로드 시 첫 번째 이미지를 강제로 로드합니다. (초기 설정)
-        targetImage.src = imagePaths[0];
+        // 1. 섹션이 화면 상단에 고정되었을 때 인터랙션 시작
+        if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
+            
+            // 섹션이 sticky 된 후 총 스크롤된 거리
+            let rawScrollProgress = Math.abs(sectionRect.top); 
+            
+            // 2. 💡 초기 딜레이 (100vh)를 제외한 실제 애니메이션 구동 스크롤 값 계산
+            let animationScroll = rawScrollProgress - initialDelay;
+            
+            // 3. 애니메이션 스크롤이 0보다 작으면 (아직 100vh 딜레이 중이면) 0으로 고정
+            if (animationScroll < 0) {
+                animationScroll = 0; 
+            }
 
-    })
+            // 4. 최대 이동 거리(300vh)를 초과하지 않도록 제한
+            if (animationScroll > maxMovement) {
+                animationScroll = maxMovement;
+            }
+
+            // 5. 텍스트 박스 이동: animationScroll 값으로 변환 적용
+            allBox.style.transform = `translateY(-${animationScroll}px)`;
+            
+            // 6. 이미지 전환 로직: animationScroll 값 사용 (하단에서 올라올 때 미리 전환)
+            const newIndex = Math.min(
+                totalBoxCount - 1, 
+                Math.floor((animationScroll + imageChangeThreshold) / screenHeight)
+            );
+            
+            if (newIndex !== currentImageIndex) {
+                targetImage.src = imagePaths[newIndex];
+                currentImageIndex = newIndex;
+            }
+        } 
+    }
+    
+    // 윈도우 스크롤 이벤트에 핸들러 등록
+    window.addEventListener('scroll', handleScroll);
+
+    // 페이지 로드 시 첫 번째 이미지를 로드하고 초기 상태 설정
+    targetImage.src = imagePaths[0];
+    currentImageIndex = 0;
+
+})
 
 document.addEventListener("DOMContentLoaded", function() {
     const video1 = document.getElementById('user-video');

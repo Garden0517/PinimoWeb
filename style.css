@@ -919,60 +919,81 @@ video {
     margin-top: 36px;
 }
 
+        /* 1. 스크롤을 잡아둘 섹션 */
+        .scroll-interaction-section {
+            /* 텍스트 박스 4개 * 100vh + 시작/종료 여유 공간 */
+            height: calc(100vh * 5 + 1px); /* 4개의 텍스트를 한 화면씩 보여줄 높이 확보 */
+            position: relative;
+        }
 
-.box12 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 텍스트를 수직 중앙 정렬 */
-    width: 100%;
-    height: 100vh; /* 각 박스가 화면 전체 높이를 차지하도록 설정 */
-    padding: 0 0;
-    position: relative; 
-    /* 기존 overflow-y: scroll; 제거 */
-    
-    /* **핵심:** 스크롤 스내핑 자식 속성 */
-    scroll-snap-align: start; /* 각 박스의 시작 지점이 스크롤 뷰포트의 시작 지점에 맞춰지도록 설정 */
-}
-.textbox12{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 1080px;
-}
-.img12 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    /* height: 1080px; 대신 */
-    height: 100vh; /* 화면 높이에 맞추기 */
-}
-.all12{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-.all-box12 {
-    width: 50%;
-    height: 100vh; /* 화면 전체 높이로 설정 */
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll; /* 세로 스크롤 허용 */
-    
-    /* **핵심:** 스크롤 스내핑 부모 속성 */
-    scroll-snap-type: y mandatory; 
+        /* 2. 화면에 고정될 컨테이너 (스크롤 고정의 핵심) */
+        .fixed-container {
+            position: sticky; /* 섹션 내에서 스크롤될 때까지 고정 */
+            top: 0;           /* 화면 상단에 닿았을 때 고정 시작 */
+            width: 100%;
+            height: 100vh;    /* 뷰포트 높이로 고정 */
+            overflow: hidden; /* 내부 요소의 이동으로 인한 스크롤바 방지 */
+            /* Flexbox로 중앙 정렬을 위한 설정 (선택 사항) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* 1. 웹킷 계열 (Chrome, Safari, Edge 구버전) */
-    &::-webkit-scrollbar {
-        display: none; /* 스크롤 바 자체를 숨김 */
-    }
+        /* 3. 텍스트 박스 컨테이너 */
+        .all12 {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh; /* fixed-container의 높이를 상속 */
+        }
 
-    /* 2. 마이크로소프트/IE (Edge 최신 버전도 지원) */
-    -ms-overflow-style: none; /* IE 및 Edge에서 스크롤 바 숨김 */
-    
-    /* 3. 파이어폭스 (Firefox) */
-    scrollbar-width: none; /* 파이어폭스에서 스크롤 바 너비를 없앰 */
-}
+        /* 4. 텍스트 그룹 (스크롤로 인해 위로 움직일 대상) */
+        .all-box12 {
+            width: 50%;
+            height: 100%; /* 고정된 높이를 유지 */
+            display: flex;
+            flex-direction: column;
+            /* JS로 translateY가 적용되어 위로 이동합니다. */
+            transition: transform 0.1s linear; /* 부드러운 스크롤 효과 (선택 사항) */
+        }
+
+        /* 5. 개별 텍스트 박스 (각각 뷰포트 높이) */
+        .box12 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            width: 100%;
+            height: 100vh; /* 각 텍스트가 화면 전체 높이를 차지 */
+            padding: 0 0;
+            flex-shrink: 0; /* 크기가 줄어들지 않도록 방지 */
+        }
+        
+        /* 6. 텍스트 내용 */
+        .textbox12 {
+            /* 텍스트 위치만 남기기 위해 높이 제거 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 50px; /* 상단 여유 공간 추가 */
+            padding-bottom: 50px; /* 하단 여유 공간 추가 */
+        }
+
+        /* 7. 이미지 섹션 (고정된 이미지) */
+        .img12 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100vh; /* 화면 높이에 맞추기 */
+            overflow: hidden;
+        }
+        .img12 img {
+            max-height: 100%; /* 이미지 크기 조정 */
+            width: auto;
+            object-fit: contain;
+            transition: opacity 0.3s ease-in-out; /* 이미지 전환 시 부드러운 효과 */
+        }
 
 
 /* 열세번째 섹션*/
