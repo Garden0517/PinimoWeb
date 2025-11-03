@@ -1195,7 +1195,7 @@ video {
 .Box21{
     display: flex;
     flex-direction: row;
-    padding-top: 287px;
+    align-items: center;
     height: 100vh;
 }
 
