@@ -300,6 +300,10 @@ section:nth-child(1) .container {
     width: 954px;
 }
 
+.animate-item.delay-5.is-visible {
+    transition-delay: 0.5s;
+}
+
 /* ul (차트 전체) 스타일 */
     .bar-chart {
         list-style: none; /* 기본 리스트 마커 제거 */
@@ -1108,19 +1112,22 @@ video {
 
 /* 열여섯번째 섹션 */
 .Box16{
-    background-image: url("img/authenticity.png");
-    background-repeat: no-repeat;
+    /* background-image: url("img/authenticity.png");
+    background-repeat: no-repeat; */
     display: flex;
+    height: auto;
+    margin-top: 150px;
 }
 
 .Text16{
     display: flex;
-    position: relative;
+    position: absolute;
     flex-direction: column;
     width: 50%;
-    margin-top: 450px;
-    margin-left: 852px;
-    padding-bottom: 948px;
+    margin-left: 913px;
+    /* padding-top: 200px; */
+    padding-bottom: 870px;
+    z-index: 100;
 }
 
 /*열일곱번째*/
