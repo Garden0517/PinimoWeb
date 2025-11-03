@@ -305,7 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const targetImage = document.querySelector('.img12 img');
     const interactionSection = document.querySelector('.scroll-interaction-section');
     
-    // ... (이미지 경로는 생략)
     const imagePaths = [
         './img/aimasking/phone1.png',
         './img/aimasking/phone2.png',
