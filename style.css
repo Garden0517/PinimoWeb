@@ -16,6 +16,29 @@ body {
     margin: 0; 
 }
 
+/* 1. 스크롤 바의 너비 정의 */
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+    width: 10px; 
+}
+
+/* 2. 스크롤 바 트랙 (배경) 색상 */
+body::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
+    background: #191919; 
+}
+
+/* 3. 스크롤 막대 (thumb) 색상 및 디자인 */
+body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+    background-color: #7FFF6C; 
+    border-radius: 5px;
+    border: 2px solid #191919; /* 트랙 배경색과 동일하게 설정하여 깔끔하게 분리 */
+}
+
+/* (선택 사항) 마우스 오버 시 색상 */
+body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
+    background-color: #fff;
+}
+
+
 /* 스크롤 영역을 확보하기 위해 섹션 높이를 지정 */
 section {
     /* height: 100vh; 제거됨 - 내용물에 따라 높이 자동 조절 */
@@ -922,7 +945,7 @@ video {
         /* 1. 스크롤을 잡아둘 섹션 */
         .scroll-interaction-section {
             /* 텍스트 박스 4개 * 100vh + 시작/종료 여유 공간 */
-            height: calc(100vh * 5 + 1px); /* 4개의 텍스트를 한 화면씩 보여줄 높이 확보 */
+            height: calc(100vh * 6 + 1px); /* 4개의 텍스트를 한 화면씩 보여줄 높이 확보 */
             position: relative;
         }
 
@@ -1221,7 +1244,4 @@ video {
     display: flex;
     flex-direction: row;
     margin-left: 403px;
-
 }
-
-
