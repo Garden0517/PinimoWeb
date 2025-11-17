@@ -203,11 +203,12 @@ section:nth-child(1) .container {
 
 .Box1{
     display: flex;
-    background-image: url('img/Box1.png');
-    background-repeat: no-repeat;
+    flex-direction: row;
     width: 100%;
     height: auto;
-    margin-top: 495px;
+    margin-top: 326px;
+    padding-bottom: 150px;
+    justify-content: space-between;
 }
 
 .Logo1{
@@ -220,11 +221,14 @@ section:nth-child(1) .container {
 .Text1{
     display: flex;
     flex-direction: column;
-    padding-left: 738px;
-    padding-top: 80px;
+    padding-left: 0px;
+    padding-top: 130px;
     padding-bottom: 75px;
 }
 
+.img1{
+    display: flex;
+}
 
 .glass1{
     display: flex;
@@ -305,108 +309,47 @@ section:nth-child(1) .container {
 }
 
 /* ul (차트 전체) 스타일 */
-    .bar-chart {
-        list-style: none; /* 기본 리스트 마커 제거 */
-        padding: 0;
-        margin: 0;
-        width: 100%; /* 차트의 최대 너비 설정 */
-    }
-
-    /* li (개별 막대) 스타일 */
-    .bar-item {
-        margin-bottom: 34px;
-        height: 58px; /* 막대 높이 */
-        line-height: 58px;
-        background-color: #7FFF6C; /* 기본 색상 */
-        border-radius: 20px;
-        overflow: hidden;
-
-        /* ✨ 애니메이션 준비: 초기 너비는 0 */
-        width: 0; 
-
-        /* ✨ 애니메이션 설정: 1초 동안 width 변화에 부드러운 효과 적용 */
-        transition: width 1s ease-in-out; 
-    }
-
-    /* ---------------------------------------------------- */
-    /* 데이터 값에 따른 최종 너비 (JavaScript로 active 클래스 부여 시 적용) */
-    /* ---------------------------------------------------- */
-
-    /* 90% */
-    .bar-chart.active .bar-1 { width: 11%; } 
-
-    /* 60% */
-    .bar-chart.active .bar-2 { width: 27%;} 
-
-    /* 75% */
-    .bar-chart.active .bar-3 { width: 55%;} 
-
-    /* 40% */
-    .bar-chart.active .bar-4 { width: 80%;} 
-    
-    /* 95% */
-    .bar-chart.active .bar-5 { width: 100%;}
-
-/* 
-.Box2 .table p {
-    font-size: 2.4rem;
-    margin-bottom: 14px;
-    font-weight: 300; 
+.bar-chart {
+    list-style: none; /* 기본 리스트 마커 제거 */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* 차트의 최대 너비 설정 */
 }
 
-.Box2 .table img {
-    display: flex;
-    padding-bottom: 34px;
-}
-
-.Box2 .table .box1{
-    display: flex;
-    position: relative;
-    z-index: 500;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.Box2 .table .box2{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.Box2 .table .box3{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 92px;
-    width: 467px;
-    opacity: 1;
+/* li (개별 막대) 스타일 */
+.bar-item {
+    margin-bottom: 34px;
+    height: 58px; /* 막대 높이 */
+    line-height: 58px;
+    background-color: #7FFF6C; /* 기본 색상 */
+    border-radius: 20px;
     overflow: hidden;
+
+    /* ✨ 애니메이션 준비: 초기 너비는 0 */
+    width: 0; 
+
+    /* ✨ 애니메이션 설정: 1초 동안 width 변화에 부드러운 효과 적용 */
+    transition: width 1s ease-in-out; 
 }
 
-.Box2 .table .box3 img {
-    /* 이미지가 부모(.box3)의 너비를 100% 채우도록 고정 
-    width: 100%; 
-    height: 100%;
-    object-fit: contain;
-    display: block;
-} */
+/* ---------------------------------------------------- */
+/* 데이터 값에 따른 최종 너비 (JavaScript로 active 클래스 부여 시 적용) */
+/* ---------------------------------------------------- */
 
-/* .animate-item-2.delay-1.is-visible-2 {
-    transition-delay: -0.1s;
-}
-.animate-item-2.delay-2.is-visible-2 {
-    transition-delay: 0.1s;
-}
-.animate-item-2.delay-3.is-visible-2 {
-    transition-delay: 0.4s;
-}
-.animate-item-2.delay-4.is-visible-2 {
-    transition-delay: 0.5s;
-}
-.animate-item-2.delay-5.is-visible-2 {
-    transition-delay: 0.6s;
-} */
+/* 90% */
+.bar-chart.active .bar-1 { width: 11%; } 
+
+/* 60% */
+.bar-chart.active .bar-2 { width: 27%;} 
+
+/* 75% */
+.bar-chart.active .bar-3 { width: 55%;} 
+
+/* 40% */
+.bar-chart.active .bar-4 { width: 80%;} 
+
+/* 95% */
+.bar-chart.active .bar-5 { width: 100%;}
 
 .Box2 .etc{
     position: relative;
@@ -452,8 +395,203 @@ section:nth-child(1) .container {
 
 .Box3 .second{
     display: flex;
+    position: relative;
     flex-direction: row;
 }
+
+.user31{
+    display: flex;
+    margin-top: 221px;
+    margin-left: 450px;
+    position: absolute;
+    z-index: 100;
+}
+
+.user32{
+    display: flex;
+    margin-top: 221px;
+    margin-left: 979px;
+    position: absolute;
+    z-index: 100;
+}
+
+.user33{
+    display: flex;
+    margin-top: 221px;
+    margin-left: 1309px;
+    position: absolute;
+    z-index: 100;
+}
+
+.user34{
+    display: flex;
+    margin-top: 358px;
+    margin-left: 79px;
+    position: absolute;
+    z-index: 100;
+}
+
+.user35{
+    display: flex;
+    margin-top: 358px;
+    margin-left: 856px;
+    position: absolute;
+    z-index: 100;
+}
+
+.user36{
+    display: flex;
+    margin-top: 358px;
+    margin-left: 1143px;
+    position: absolute;
+    z-index: 100;
+}
+
+
+.animate-item.delay1.is-visible {
+    transition-delay: 0.2s;
+}
+
+.animate-item.delay2.is-visible {
+    transition-delay: 0.4s;
+}
+
+.animate-item.delay3.is-visible {
+    transition-delay: 0.6s;
+}
+
+.animate-item.delay4.is-visible {
+    transition-delay: 0.8s;
+}
+.animate-item.delay5.is-visible {
+    transition-delay: 1.0s;
+}
+
+.animate-item.delay6.is-visible {
+    transition-delay: 1.2s;
+}
+
+.chart{
+    position: absolute;
+    z-index: 200;
+    margin-top: 430px;
+    margin-left: 162px;
+}
+
+.chart p{
+    font-size: 40px;
+    font-weight: 500;
+    color: black;   
+}
+
+.donut-chart {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    padding-top: 170px;
+    padding-left: 55px;
+    width: 583px;
+    height: 583px;
+    border-radius: 100%
+}
+
+ .portion-block {
+    border-radius: 50%;
+    clip: rect(0px, 583px, 583px, 291.5px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    transform-origin: 50% 50%;
+}
+.circle {
+    border-radius: 50%;
+    clip: rect(0px, 291.5px, 583px, 0px);
+
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    transform-origin: 50% 50%;
+}
+	
+	
+#part1 {
+    transform: rotate(-180deg);
+  }
+
+#part1 .circle {
+	background-color: #7FFF6C;
+	/*transform: rotate(90deg);*/
+}
+    
+#part2 {
+    transform: rotate(10deg);
+  }
+#part2 .circle {
+    background-color: #7FFF6C;
+}
+
+.animated-chart.animate #part1 .circle {
+    animation: first 1s 1 forwards;
+}
+
+.animated-chart.animate #part2 .circle {
+    /* 기존에 있던 delay(0.68s)를 포함하여 애니메이션 재적용 */
+    animation: second 0.7s 1 forwards 0.68s;
+}
+
+@keyframes first {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-180deg);}
+}
+@keyframes second {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-25deg);}
+}
+
+
+.index3{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    height: 510px;
+    width: 500px;
+    z-index: 1000;
+    padding-top: 187px;
+    padding-left: 50px;
+}
+
+.bar-chart3 {
+    list-style: none; /* 기본 리스트 마커 제거 */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* 차트의 최대 너비 설정 */
+}
+
+/* li (개별 막대) 스타일 */
+.bar-item3 {
+    margin-bottom: 82px;
+    height: 32px; /* 막대 높이 */
+    line-height: 58px;
+    background-color: #7FFF6C; /* 기본 색상 */
+    border-radius: 20px;
+    overflow: hidden;
+
+    /* ✨ 애니메이션 준비: 초기 너비는 0 */
+    width: 0px; 
+
+    /* ✨ 애니메이션 설정: 1초 동안 width 변화에 부드러운 효과 적용 */
+    transition: width 1s ease-in-out; 
+}
+
+/* ---------------------------------------------------- */
+/* 데이터 값에 따른 최종 너비 (JavaScript로 active 클래스 부여 시 적용) */
+/* ---------------------------------------------------- */
+.bar-chart3.active .bar-31 { width: 91%; } 
+.bar-chart3.active .bar-32 { width: 84%;} 
+.bar-chart3.active .bar-33 { width: 80%;} 
+.bar-chart3.active .bar-34 { width: 42%;} 
+.bar-chart3.active .bar-35 { width: 28%;}
+.bar-chart3.active .bar-36 { width: 21%;}
 
 /* 네번쨰 섹션 */
 .Img4{
@@ -522,27 +660,25 @@ section:nth-child(1) .container {
 
 .Box4{
     display: flex;
+    flex-direction: column;
     position: relative;
     z-index: 900;
-    flex-direction: row;
     width: 100%;
     justify-content: center;
-    margin-top: 1857px;
+    align-items: center;
+    margin-top: 1780px;
     margin-bottom: 150px;
 }
 
-.Box4 h1{
-    font-size: 2.8rem; /* 20px */
+/* .Box4 h1{
+    font-size: 2.8rem;
     font-weight: 600;
     color: #7FFF6C;
-}
+} */
 
 .Box4 p{
     display: flex;
-    margin-left: 20px;
-    font-size: 2.8rem; /* 20px */
-    line-height: 1.5;
-    font-weight: 300;
+    text-align: center;
 }
 
 .word4{
@@ -687,6 +823,133 @@ video {
     height: auto;
     margin: 0 auto;    /* 가운데 정렬 */
     position: relative;  
+}
+
+.color-block {
+    /* 초기 상태: 첫 번째 블록 제외하고 숨김 */
+    opacity: 0;
+    transform: translateY(-150px); /* 위로 50px 이동된 상태에서 시작 */
+    transition: opacity 0.2s ease-out, transform 0.8s ease-out; /* 부드러운 전환 효과 */
+    position: relative;
+}
+
+/* 첫 번째 Pinimo Green 블록은 처음에 보여야 함 */
+.color-block.block-1 {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative; /* Z-index를 위해 다시 추가 */
+    z-index: 10; /* 검은색(z-index: 1)보다 낮게 설정 */
+}
+
+/* 애니메이션 트리거 시 적용할 최종 상태 */
+.color-block.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.Box9{
+    display: flex;
+    height: auto;
+}
+
+.min91{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 431px;
+    margin-top: 40px;
+}
+
+.min92{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 1520px;
+    margin-top: 40px;
+}
+
+
+/* .min93{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 500;
+    margin-left: 1520px;
+    margin-top: 40px;
+} */
+
+.min94{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 155px;
+    margin-top: 430px;
+}
+
+.min95{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 706px;
+    margin-top: 622px;
+}
+.min96{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 431px;
+    margin-top: 811px;
+}
+.min97{
+    display: flex;
+    position: absolute;
+    width: 234px;
+    height: auto;
+    z-index: 100;
+    margin-left: 1256px;
+    margin-top: 811px;
+}
+
+.icon-carousel-container {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    margin-top: 227px;
+    margin-left: 240px;
+    width: 472px;
+    height: auto;
+}
+
+.icon-item {
+    /* 모든 아이콘을 겹치게 설정 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0; /* 기본적으로 모든 아이콘을 숨김 */
+    transition: opacity 0s ease-in-out; /* 부드러운 전환 효과를 위해 추가 */
+}
+
+.icon-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.icon-item.active {
+    /* 현재 활성화된 아이콘만 보이게 설정 */
+    opacity: 1;
 }
 
 /* 1. 이미지 스택 컨테이너 설정 */
@@ -1047,6 +1310,12 @@ video {
     width: 50%;
     margin-top: 58px;
     align-items: flex-end;   
+    transition: opacity 0.4s ease-in-out; /* 부드러운 전환 효과를 위해 추가 */
+}
+
+/* 페이드 아웃 시 투명도를 0으로 만듦 */
+.Text14.fade-out {
+    opacity: 0;
 }
 
 .Box14{
@@ -1121,20 +1390,106 @@ video {
 
 .Text16{
     display: flex;
-    position: absolute;
+    /* position: absolute; */
     flex-direction: column;
     width: 50%;
-    margin-left: 913px;
+    /* margin-left: 913px; */
     /* padding-top: 200px; */
     padding-bottom: 870px;
-    z-index: 100;
+}
+
+.Img16{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 835px;
+    height: auto;
+    margin-top: 120px;
+}
+
+.img16{
+    width: auto;
+    height: auto;
+}
+
+.container16{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 400px;
+}
+
+.box16{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 500;
+    justify-content: center; /* 가운데 정렬 */
+}
+
+.scroll16{
+    justify-content: center; /* 가운데 정렬 */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    flex-wrap: nowrap;
+    gap: 90px; /* 이미지 간격 (기존 margin 값 활용) */
+}
+
+.scrollbox{
+    display: flex;
+    width: auto;
+    height: 75%;
+    margin-top: 180px;
+}
+
+.scrollbox-1{
+    display: flex;
+    width: auto;
+    height: 90%;
+    margin-top: 90px;
+}
+
+.scroll16 img {
+    height: 100%;
+    width: auto; /* 높이를 기준으로 너비 자동 조정 */
+    transition: transform 0.4s ease-in-out; /* 움직임 효과 */
+}
+
+.phone16{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.animate-item-3 {
+    opacity: 0;
+    transform: translateY(200px); 
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 등장 상태: 제자리로 이동하며 보이게 하기 */
+.animate-item-3.is-visible-3 {
+    opacity: 1;
+    transform: translateY(0); /* 원래 위치로 복귀 */
+}
+
+.animate-item-3.delay16-1.is-visible-3 {
+    transition-delay: 0s;
+}
+
+.animate-item-3.delay16-2.is-visible-3 {
+    transition-delay: 0.4s;
 }
 
 /*열일곱번째*/
 .Box17{
     background-image: url("img/authenticity2.png");
     background-repeat: no-repeat;
-    margin-top: 164px;
+    margin-top: 300px;
 }
 
 .Text17{
@@ -1231,28 +1586,30 @@ video {
     flex-direction: row;
     align-items: center;
     height: 100vh;
+    justify-content: space-between;
 }
 
 .Text21{
     display: flex;
-    position: relative;
     flex-direction: column;
-    width: 50%;
+    align-items: center;
+    width: 300px;
+    height: auto;
 }
+
 .Text21 h1{
-    font-size: 5rem;
-    line-height: 1.5;
+    font-size: 24px;
     font-weight: 400;
-    margin-bottom: 184px;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 0;
+    text-align: center;
 }
+
 .Text21 p{
-    font-size: 2.4rem;
-    line-height: 1.5;
-    font-weight: 200;
-    margin-bottom: 10px;
-}
-.text21{
-    display: flex;
-    flex-direction: row;
-    margin-left: 403px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    margin-top: 0px;
+    text-align: center;
 }

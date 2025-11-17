@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 1. 섹션 등장 효과 로직 (.animate-item)
     // ==========================================================
     const animateItems = document.querySelectorAll('.animate-item');
+    // NOTE: observerOptions는 4개의 다른 로직에서 사용되므로, 중복 선언 방지를 위해 최상위에서 선언합니다.
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
 
     const observerCallback = (entries, observer) => {
@@ -24,13 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // ==========================================================
     // 1-2. 새로운 섹션 등장 효과 로직 (.animate-item-2 -> is-visible-2)
     // ==========================================================
-    const animateItems2 = document.querySelectorAll('.animate-item-2'); // ✨ 새로운 대상 클래스
-    // 옵션은 같거나 다르게 설정할 수 있습니다. (여기서는 동일하게 사용)
+    const animateItems2 = document.querySelectorAll('.animate-item-2'); 
     
     const observerCallback2 = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible-2'); // ✨ 새로운 애니메이션 클래스
+                entry.target.classList.add('is-visible-2'); 
                 observer.unobserve(entry.target); 
             }
         });
@@ -38,6 +38,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const observer2 = new IntersectionObserver(observerCallback2, observerOptions);
     animateItems2.forEach(item => {
         observer2.observe(item);
+    });
+
+    const animateItems3 = document.querySelectorAll('.animate-item-3'); 
+    
+    const observerCallback3 = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible-3'); 
+                observer.unobserve(entry.target); 
+            }
+        });
+    };
+    const observer3 = new IntersectionObserver(observerCallback3, observerOptions);
+    animateItems3.forEach(item => {
+        observer3.observe(item);
     });
 
     // ==========================================================
@@ -53,10 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const container3 = img3 ? img3.parentElement : null;
 
     if (stickyWrapper && solutionSection && img1) { 
-        // ... (이미지 및 마진 데이터 정의, updateImages 함수, handleScroll 함수는 그대로 유지) ...
-        // (이 부분은 파일에 이미 있으니 생략하고, window.addEventListener('scroll', handleScroll)만 남깁니다.)
-
-        // 스크롤 이벤트 핸들러 (Sticky Scroll 로직) - 이전에 보낸 코드와 동일
         const imageGroups = [
             // 그룹 1: solution1, solution2, solution3
             { sources: ['./img/solution/solution1.png', './img/solution/solution2.png', './img/solution/solution3.png'], marginClass: 'margin-group-1' },
@@ -67,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
         ];
         let currentGroupIndex = 0; 
         function updateImages(groupIndex) {
-            // ... (updateImages 함수 내용 그대로) ...
             if (!img1 || !img2 || !img3) return;
             const group = imageGroups[groupIndex];
             const images = [img1, img2, img3];
@@ -112,16 +122,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const detectionTarget = document.getElementById('logo-image-stack'); 
 
     if (newFadeImage && detectionTarget) {
-        // **누락된 fadeOptions 정의**
-        const fadeOptions = {
-            root: null, 
-            rootMargin: '0px',
-            threshold: 0.5 
-        };
-
+        // **fadeOptions는 observerOptions을 재사용**
         const fadeObserverCallback = (entries, observer) => {
             entries.forEach(entry => {
-                // **감지 대상을 부모 컨테이너로 설정**하고, isIntersecting 시 클래스 추가
                 if (entry.target === detectionTarget && entry.isIntersecting) { 
                     newFadeImage.classList.add('is-faded-in');
                     observer.unobserve(detectionTarget); 
@@ -129,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         };
 
-        const fadeObserver = new IntersectionObserver(fadeObserverCallback, fadeOptions);
+        const fadeObserver = new IntersectionObserver(fadeObserverCallback, observerOptions); // observerOptions 사용
         fadeObserver.observe(detectionTarget);
     }
 
@@ -151,11 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // 텍스트 색상을 업데이트하는 함수
         function updateTextColors(isON) {
             if (isON) {
-                // ON 상태일 때: "ON은 연결" 활성화, "OFF는 안심" 비활성화
                 onText.classList.add('text-active-color');
                 offText.classList.remove('text-active-color');
             } else {
-                // OFF 상태일 때: "OFF는 안심" 활성화, "ON은 연결" 비활성화
                 offText.classList.add('text-active-color');
                 onText.classList.remove('text-active-color');
             }
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 onOffButton.classList.add('is-pulsing'); 
             }
             
-            // **3. 텍스트 색상 업데이트 함수 호출**
+            // 3. 텍스트 색상 업데이트 함수 호출
             updateTextColors(isCurrentlyON);
         });
         
@@ -196,63 +197,103 @@ document.addEventListener("DOMContentLoaded", function() {
     // ==========================================================
 
     const connectionSection = document.getElementById('section-connection');
-    const connectionWrapper = document.getElementById('connection-sticky-wrapper'); 
-    const connectionImage = document.getElementById('connection-phone-img');
+const connectionWrapper = document.getElementById('connection-sticky-wrapper'); 
+const connectionImage = document.getElementById('connection-phone-img');
 
-    if (connectionWrapper && connectionImage && connectionSection) {
+// 새로 추가된 텍스트 요소
+const connectionTextContainer = document.getElementById('connection-text-container');
+const connectionTitle = document.getElementById('connection-title');
+const connectionDesc = document.getElementById('connection-desc');
 
-        // 1. 이미지 경로 데이터 (3단계)
-        const connectionImageGroups = [
-            './img/connection/phone1.png', // 0% ~ 33%
-            './img/connection/phone2.png', // 33% ~ 66% (실제 파일 경로로 변경 필요)
-            './img/connection/phone3.png'  // 66% ~ 100% (실제 파일 경로로 변경 필요)
-        ];
 
-        let currentConnectionStep = 0; 
-        
-        const updateConnectionImage = (step) => {
-            if (step !== currentConnectionStep) {
-                connectionImage.src = connectionImageGroups[step];
+if (connectionWrapper && connectionImage && connectionSection && connectionTextContainer && connectionTitle && connectionDesc) {
+
+    // 1. 이미지 경로 데이터 (3단계)
+    const connectionImageGroups = [
+        './img/connection/phone1.png', // 0% ~ 33%
+        './img/connection/phone2.png', // 33% ~ 66% 
+        './img/connection/phone3.png'  // 66% ~ 100% 
+    ];
+
+    // 2. 텍스트 박스 내용 데이터 (3단계)
+    const connectionTextGroups = [
+        {
+            title: '공개는 자유롭게</br>노출은 안전하게',
+            desc: '직접 친구 그룹별로 자세한 공개범위를 설정해 타인과 감정의</br>공유 여부와 범위를 자유롭게 직접 조절해보세요!',
+        },
+        {
+            title: '모두 다른 친구들</br>각각 다른 게시물',
+            desc: '친구 목록의 각기 다른 성격과 유형을 가진 친구들</br>모두에게 각각의 어울리는 게시물을 생성할 수 있어요!',
+        },
+        {
+            title: '쉽고 빠른 게시글</br>변경과 태그 생성',
+            desc: '게시글과 태그를 쉽고 빠르게 생성하고 변경하여</br>내가 보여주고 싶은 삶의 범위만 공유할 수 있어요!',
+        }
+    ];
+
+    let currentConnectionStep = 0; 
+    const FADE_DURATION = 500; // 페이드 전환 시간 (0.5초)
+
+    const updateConnectionContent = (step) => {
+        if (step !== currentConnectionStep) {
+            
+            // 1. 페이드 아웃 시작 (투명도 0으로)
+            connectionTextContainer.classList.add('fade-out');
+
+            setTimeout(() => {
+                // 2. 내용과 이미지 업데이트 (투명도가 0일 때)
+                
+                // 이미지 업데이트 (기존 로직)
+                connectionImage.src = connectionImageGroups[step]; 
+                
+                // 텍스트 업데이트
+                connectionTitle.innerHTML = connectionTextGroups[step].title;
+                connectionDesc.innerHTML = connectionTextGroups[step].desc;
+
+                // 3. 페이드 인 시작 (투명도 1로 복귀)
+                connectionTextContainer.classList.remove('fade-out');
+
                 currentConnectionStep = step;
-            }
-        };
+            }, FADE_DURATION * 0.5); // 전환 시간의 절반 후에 내용 변경
+        }
+    };
+    
+    // 초기 내용 및 이미지 설정
+    updateConnectionContent(0);
+
+    // 3. 스크롤 이벤트 핸들러
+    const handleConnectionScroll = () => {
+        const rect = connectionWrapper.getBoundingClientRect();
         
-        // 초기 이미지 설정
-        updateConnectionImage(0);
+        // 스크롤 진행 거리
+        const scrollProgress = -rect.top;
+        
+        // 인터랙션이 진행되는 전체 스크롤 길이
+        const interactionHeight = connectionWrapper.offsetHeight - window.innerHeight;
+        
+        // 스크롤 진행률 (0.0 ~ 1.0)
+        const progressRatio = Math.min(1, Math.max(0, scrollProgress / interactionHeight));
 
-        // 2. 스크롤 이벤트 핸들러
-        const handleConnectionScroll = () => {
-            const rect = connectionWrapper.getBoundingClientRect();
-            
-            // 스크롤 진행 거리
-            const scrollProgress = -rect.top;
-            
-            // 인터랙션이 진행되는 전체 스크롤 길이
-            const interactionHeight = connectionWrapper.offsetHeight - window.innerHeight;
-            
-            // 스크롤 진행률 (0.0 ~ 1.0)
-            const progressRatio = Math.min(1, Math.max(0, scrollProgress / interactionHeight));
+        // 총 3단계이므로, 진행률을 3등분하여 단계를 결정합니다.
+        let newStep;
+        
+        if (progressRatio < 0.33) {
+            newStep = 0;
+        } else if (progressRatio < 0.66) {
+            newStep = 1;
+        } else {
+            newStep = 2;
+        }
 
-            // 총 3단계이므로, 진행률을 3등분하여 단계를 결정합니다.
-            let newStep;
-            
-            if (progressRatio < 0.33) {
-                newStep = 0;
-            } else if (progressRatio < 0.66) {
-                newStep = 1;
-            } else {
-                newStep = 2;
-            }
+        // 현재 단계와 다를 경우에만 이미지 및 텍스트 업데이트
+        if (newStep !== currentConnectionStep) {
+            updateConnectionContent(newStep);
+        }
+    };
 
-            // 현재 단계와 다를 경우에만 이미지 업데이트
-            if (newStep !== currentConnectionStep) {
-                updateConnectionImage(newStep);
-            }
-        };
-
-        // 스크롤 이벤트 리스너 등록
-        window.addEventListener('scroll', handleConnectionScroll);
-    }
+    // 스크롤 이벤트 리스너 등록
+    window.addEventListener('scroll', handleConnectionScroll);
+}
 
     // ==========================================================
     // 6. 열두 번째 섹션: 스크롤 시 이미지 변경 로직
@@ -312,57 +353,53 @@ document.addEventListener("DOMContentLoaded", function() {
         './img/aimasking/phone4.png'
     ];
     
+    // 텍스트 박스 총 개수
     const totalBoxCount = textBoxes.length;
+    
+    // 윈도우 크기는 스크롤 시 변하지 않으므로 전역으로 정의
     const screenHeight = window.innerHeight; 
     
-    // 💡 텍스트가 최종적으로 이동할 총 거리 (4개 박스를 모두 화면 밖으로 밀어낼 거리: 400vh)
-    const maxMovement = totalBoxCount * screenHeight; // 4 * 100vh = 400vh
+    // 텍스트 이동이 필요한 총 거리 (마지막 박스까지 스크롤될 거리)
+    // (총 박스 수 - 1) * 100vh
+    const maxMovement = (totalBoxCount - 1) * screenHeight; 
     
-    // 💡 이미지 전환이 멈춰야 하는 스크롤 값 (마지막 텍스트 박스가 화면 상단에 닿을 때: 300vh)
-    const maxImageMovement = (totalBoxCount - 1) * screenHeight; // 3 * 100vh = 300vh 
+    let currentImageIndex = -1; // 현재 표시 중인 이미지 인덱스
     
-    // 초기 100vh 동안 첫 번째 박스 고정 후 애니메이션 시작
-    const initialDelay = screenHeight; 
-
-    // 이미지 전환 기준점
-    const imageChangeThreshold = screenHeight * 0.2; 
-    
-    let currentImageIndex = -1; 
+    // 💡 이미지 전환 기준점: 화면 높이의 20% 지점 (하단에서 위로 80% 올라왔을 때)
+    // 이 값을 조정하여 전환 타이밍을 조절할 수 있습니다. 
+    // screenHeight * 0.8: 각 텍스트가 화면 하단에서 20%만 올라와도 다음 이미지로 전환
+    const imageChangeThreshold = screenHeight * 0.5; 
     
     function handleScroll() {
         const sectionRect = interactionSection.getBoundingClientRect(); 
         
-        // 1. 섹션이 화면 상단에 고정되었을 때 인터랙션 시작
+        // 1. 섹션이 화면 상단에 닿아 고정되었을 때 (sectionRect.top <= 0)
+        //    그리고 아직 스크롤 영역을 완전히 벗어나지 않았을 때 (sectionRect.bottom > screenHeight)
         if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
             
-            // 섹션이 sticky 된 후 총 스크롤된 거리
-            let rawScrollProgress = Math.abs(sectionRect.top); 
+            // 섹션이 화면 상단에 고정된 이후 스크롤된 거리 (음수이므로 절대값)
+            let scrollProgress = Math.abs(sectionRect.top);
             
-            // 2. 초기 딜레이 (100vh)를 제외한 실제 애니메이션 구동 스크롤 값 계산
-            let animationScroll = rawScrollProgress - initialDelay; 
-            
-            // 3. 딜레이 구간에서는 애니메이션을 멈춤
-            if (animationScroll < 0) {
-                animationScroll = 0; 
+            // 스크롤 진행도를 최대 이동 거리로 제한하여 오버스크롤 방지
+            if (scrollProgress > maxMovement) {
+                scrollProgress = maxMovement;
             }
 
-            // 4. 텍스트 이동은 maxMovement(400vh)를 초과하지 않도록 제한
-            if (animationScroll > maxMovement) {
-                animationScroll = maxMovement;
-            }
-
-            // 5. 텍스트 박스 이동: animationScroll 값으로 변환 적용 (0 to -400vh)
-            // 텍스트가 화면 밖으로 완전히 스크롤 아웃되도록 허용
-            allBox.style.transform = `translateY(-${animationScroll}px)`;
+            // 텍스트 박스 이동: 스크롤 진행도만큼 전체 텍스트 그룹을 위로 이동
+            allBox.style.transform = `translateY(-${scrollProgress}px)`;
             
-            // 6. 이미지 전환 로직: 텍스트가 화면 상단에 닿을 때까지만 움직인 스크롤 값 사용 (최대 300vh)
-            let imageControlledScroll = Math.min(animationScroll, maxImageMovement); 
-
+            // ----------------------------------------------------
+            // 💡 2. 이미지 전환 로직 (수정된 부분)
+            // ----------------------------------------------------
+            
+            // 이미지 전환 시점 계산: 
+            // 현재 스크롤 진행도에 미리 전환될 거리(imageChangeThreshold)를 더하여 인덱스 계산
             const newIndex = Math.min(
                 totalBoxCount - 1, 
-                Math.floor((imageControlledScroll + imageChangeThreshold) / screenHeight)
+                Math.floor((scrollProgress + imageChangeThreshold) / screenHeight)
             );
             
+            // 이미지가 변경되어야 할 때만 업데이트
             if (newIndex !== currentImageIndex) {
                 targetImage.src = imagePaths[newIndex];
                 currentImageIndex = newIndex;
@@ -373,109 +410,229 @@ document.addEventListener("DOMContentLoaded", function() {
     // 윈도우 스크롤 이벤트에 핸들러 등록
     window.addEventListener('scroll', handleScroll);
 
-    // 페이지 로드 시 초기 상태 설정
+    // 페이지 로드 시 첫 번째 이미지를 로드하고 초기 상태 설정
     targetImage.src = imagePaths[0];
     currentImageIndex = 0;
 
-})
 
-document.addEventListener("DOMContentLoaded", function() {
+    // ==========================================================
+    // 8. 추가 로직: 비디오 재생, Topbutton, 차트 애니메이션, 컬러 블록 애니메이션, 아이콘/비디오 루프
+    // (이하 모든 로직은 이미 최상위 DOMContentLoaded 안에 통합되어 있음)
+    // ==========================================================
+
     const video1 = document.getElementById('user-video');
     const playButton = document.getElementById('play-button-overlay');
     
-    // 오버레이가 아닌 '비디오' 요소 자체에 클릭 이벤트 리스너를 추가합니다.
-    video1.addEventListener('click', function() {
-        
-        // 첫 클릭 시 음소거 해제 (비디오 클릭 시에도 동일하게 적용)
-        if (video1.muted) {
-            video1.muted = false;
-        }
-
-        // 재생/일시정지 상태 토글
-        if (video1.paused) {
-            // 멈춰있으면 재생
-            video1.play()
-                .then(() => {
-                    // 재생 시작 시 오버레이 숨김을 위해 클래스 추가
-                    playButton.classList.add('is-playing');
-                });
-        } else {
-            // 재생 중이면 일시정지
-            video1.pause();
-            // 일시정지 시 오버레이 표시를 위해 클래스 제거
+    if (video1 && playButton) {
+        video1.addEventListener('click', function() {
+            if (video1.muted) {
+                video1.muted = false;
+            }
+            if (video1.paused) {
+                video1.play()
+                    .then(() => {
+                        playButton.classList.add('is-playing');
+                    });
+            } else {
+                video1.pause();
+                playButton.classList.remove('is-playing');
+            }
+        });
+        playButton.addEventListener('click', function(e) {
+            video1.click(); 
+        });
+        video1.addEventListener('ended', function() {
             playButton.classList.remove('is-playing');
-        }
-    });
+            video1.currentTime = 0; 
+        });
+        playButton.textContent = ' ▷\tCLICK'; 
+    }
 
-    // 오버레이 클릭 이벤트는 그대로 두어 초기 재생을 시작하게 합니다.
-    // (선택 사항: 초기 재생은 비디오 클릭으로 대체 가능)
-    playButton.addEventListener('click', function(e) {
-        // 오버레이가 클릭되면 video 요소로 클릭 이벤트를 전달합니다.
-        // 또는, 위 video.addEventListener의 로직을 직접 실행해도 됩니다.
-        video1.click(); 
-    });
-    
-    // 영상 재생이 끝났을 때 자동 정지 및 초기화 (변경 없음)
-    video1.addEventListener('ended', function() {
-        playButton.classList.remove('is-playing');
-        video1.currentTime = 0; 
-    });
-    
-    // 초기 상태 설정
-    playButton.textContent = ' ▷\tCLICK'; 
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // 2. HTML에서 'Topbutton' 클래스를 가진 요소를 찾습니다.
     const topButton = document.querySelector('.Topbutton');
-
-    // 3. 버튼이 존재하는지 확인하고 클릭 이벤트를 연결합니다.
     if (topButton) {
         topButton.addEventListener('click', function() {
-            // 4. window.scrollTo()를 사용하여 최상단으로 이동합니다.
             window.scrollTo({
-                top: 0,         // Y축 위치를 0 (최상단)으로 설정
-                left: 0,        // X축 위치를 0으로 설정
-                behavior: 'smooth' // 부드러운 스크롤 애니메이션 적용
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
             });
         });
     }
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-        
-        // 감지할 대상 (바 차트 ul)을 선택합니다.
-        const barChartElement = document.querySelector('.animate-bar-chart');
-        
-        // ----------------------------------------------------------
-        // Intersection Observer 설정
-        // ----------------------------------------------------------
-        
-        // threshold: 0.5 (요소의 50%가 뷰포트와 교차할 때 트리거)
-        // 이는 요소가 대략 화면 중앙에 왔을 때를 의미합니다.
-        const observerOptions = { 
-            root: null, 
-            rootMargin: '0px', 
-            threshold: 0.5 // 요소의 절반(50%)이 보일 때
-        };
+    const animatedCharts = document.querySelectorAll('.animate-bar-chart, .animated-chart');
+    const chartObserverCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                if (target.classList.contains('animate-bar-chart')) {
+                    target.classList.add('active');
+                } 
+                if (target.classList.contains('animated-chart')) {
+                    target.classList.add('animate');
+                }
+                observer.unobserve(target); 
+            }
+        });
+    };
+    const chartObserver = new IntersectionObserver(chartObserverCallback, observerOptions); // observerOptions 사용
+    animatedCharts.forEach(element => {
+        if (element.classList.contains('pie-chart-mask')) {
+             element.style.setProperty('--percentage', '0%'); 
+        }
+        chartObserver.observe(element);
+    });
 
-        const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                // isIntersecting: 요소가 threshold 비율만큼 교차하는지 여부
-                if (entry.isIntersecting) {
-                    // 1. 교차하면 .active 클래스를 부여하여 애니메이션 시작
-                    entry.target.classList.add('active'); 
-                    
-                    // 2. 한 번 실행 후에는 관찰을 중지하여 불필요한 재실행 방지
-                    observer.unobserve(entry.target); 
+    const container = document.querySelector('.color-container');
+    const colorBlocks = document.querySelectorAll('.color-block:not(.block-1)');
+    const orderedBlocks = Array.from(colorBlocks)
+        .sort((a, b) => {
+            const orderA = parseInt(a.getAttribute('data-order'));
+            const orderB = parseInt(b.getAttribute('data-order'));
+            const customOrder = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8};
+            return customOrder[orderA] - customOrder[orderB];
+        });
+
+    const colorObserverCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const totalBlocks = orderedBlocks.length;
+                orderedBlocks.forEach((block, index) => {
+                    block.style.zIndex = (totalBlocks - 1) - index; 
+                });
+                orderedBlocks.forEach((block, index) => {
+                    const delay = index * 200;
+                    setTimeout(() => {
+                        block.classList.add('is-visible');
+                    }, delay);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+    const colorObserver = new IntersectionObserver(colorObserverCallback, observerOptions); // observerOptions 사용
+    if (container) {
+        colorObserver.observe(container); 
+    }
+
+
+    const iconItems = document.querySelectorAll('.icon-item');
+    const totalIconItems = iconItems.length;
+    let currentIconIndex = 0;
+
+    function nextIcon() {
+        if (iconItems.length === 0) return;
+        iconItems[currentIconIndex].classList.remove('active');
+        currentIconIndex = (currentIconIndex + 1) % totalIconItems;
+        iconItems[currentIconIndex].classList.add('active');
+    }
+
+    if (iconItems.length > 0) {
+        setInterval(nextIcon, 1500); 
+        if (!iconItems[0].classList.contains('active')) {
+            iconItems[0].classList.add('active');
+        }
+    }
+
+
+    const videos = document.querySelectorAll('.loopVideo');
+    if (videos.length > 0) { 
+        videos.forEach(video => {
+            video.addEventListener('timeupdate', () => {
+                const buffer = 0.3;
+                if (video.currentTime >= video.duration - buffer) {
+                    video.currentTime = 0;
+                    video.play();
                 }
             });
-        };
-        
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
+            video.addEventListener('loadeddata', () => {
+                video.play();
+            });
+            video.play(); 
+        });
+    }
 
-        // 바 차트 요소를 관찰 시작
-        if (barChartElement) {
-            observer.observe(barChartElement);
-        }
-    });
+}); // <-- 최상위 DOMContentLoaded 끝
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. 각 <img> 태그에 대응하는 5개의 독립된 이미지 경로 배열을 정의합니다.
+    // 각 배열은 5개의 이미지 경로를 가지고 순환됩니다.
+    
+    // **예시 이미지 경로 배열:** (실제 파일 경로로 변경하세요)
+    const imageSets = [
+        // Set 1: img-1에 들어갈 이미지 목록 (5개)
+        [
+            './img/authenticity/phone1.png',
+            './img/authenticity/phone2.png',
+            './img/authenticity/phone3.png',
+            './img/authenticity/phone4.png',
+            './img/authenticity/phone5.png',
+        ],
+        // Set 2: img-2에 들어갈 이미지 목록 (5개)
+        [
+            './img/authenticity/phone2.png',
+            './img/authenticity/phone3.png',
+            './img/authenticity/phone4.png',
+            './img/authenticity/phone5.png',
+            './img/authenticity/phone1.png',
+        ],
+        // Set 3: img-3에 들어갈 이미지 목록 (5개)
+        [
+            './img/authenticity/phone3.png',
+            './img/authenticity/phone4.png',
+            './img/authenticity/phone5.png',
+            './img/authenticity/phone1.png',
+            './img/authenticity/phone2.png',
+        ],
+        // Set 4: img-4에 들어갈 이미지 목록 (5개)
+        [
+            './img/authenticity/phone4.png',
+            './img/authenticity/phone5.png',
+            './img/authenticity/phone1.png',
+            './img/authenticity/phone2.png',
+            './img/authenticity/phone3.png',
+        ],
+        // Set 5: img-5에 들어갈 이미지 목록 (5개)
+        [
+            './img/authenticity/phone5.png',
+            './img/authenticity/phone1.png',
+            './img/authenticity/phone2.png',
+            './img/authenticity/phone3.png',
+            './img/authenticity/phone4.png',
+        ]
+    ];
+
+    // 2. 이미지를 변경할 요소들 선택 (id를 사용합니다.)
+    const imageElements = [
+        document.getElementById('img-16-1'),
+        document.getElementById('img-16-2'),
+        document.getElementById('img-16-3'),
+        document.getElementById('img-16-4'),
+        document.getElementById('img-16-5')
+    ];
+    
+    // 3. 변수 설정
+    let currentIndex = 0; // 현재 표시 중인 imageSets 내부 인덱스
+    const totalImagesInSet = imageSets[0].length; // 각 세트의 이미지 개수 (5개)
+    const intervalTime = 1500; // 2초 간격 (3000ms)
+
+    // 4. 모든 이미지를 다음 배열 순서로 교체하는 함수
+    function changeDifferentImages() {
+        // 다음 인덱스 계산 (0 -> 1 -> 2 -> 3 -> 4 -> 0 순환)
+        currentIndex = (currentIndex + 1) % totalImagesInSet; 
+        
+        // **핵심 로직:**
+        // imageElements 배열을 순회합니다. (index는 0부터 4)
+        imageElements.forEach((imgElement, setIndex) => {
+            // imgElement (예: img-1, img-2 등)
+            // setIndex (0, 1, 2, 3, 4) -> imageSets 배열의 인덱스
+            
+            // 각 <img> 태그는 해당하는 imageSets[setIndex] 배열에서
+            // 현재 순환 인덱스(currentIndex)에 맞는 경로를 가져와 적용합니다.
+            const nextImagePath = imageSets[setIndex][currentIndex];
+            imgElement.src = nextImagePath;
+        });
+    }
+
+    // 5. 일정 시간 간격으로 changeDifferentImages 함수 실행
+    setInterval(changeDifferentImages, intervalTime);
+});
