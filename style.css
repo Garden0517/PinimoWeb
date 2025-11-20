@@ -1603,7 +1603,7 @@ video {
 
 .phone16{
     display: flex;
-    width: 23.5%;
+    width: 19.5%;
     margin: 0 auto;
     justify-content: center;
 }
@@ -1772,4 +1772,5 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
+
 }
