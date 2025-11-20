@@ -1127,7 +1127,7 @@ video {
 
 /* 열한번째 섹션*/
 .Bg11{
-    /* background-image: url("img/mapbases/map11.png"); */
+    background-image: url("img/mapbases/map11.png");
     background-repeat: no-repeat;
     width: 100vw;
     height: auto;
