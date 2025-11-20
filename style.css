@@ -123,13 +123,13 @@ h2{
 @media screen and (min-width: 2560px) {
     /* 폰트 크기 스케일링 */
     h1 {
-        font-size: 6rem; /* 60px */
+        font-size: 8rem; /* 60px */
     }
     h2 {
-        font-size: 2.5rem; /* 25px */
+        font-size: 3.6rem; /* 25px */
     }
     p {
-        font-size: 2.2rem; /* 22px */
+        font-size: 2.8rem; /* 22px */
     }
 
     /* Topbutton: 뷰포트 우측에서 더 멀리 떨어지게 */
@@ -885,6 +885,10 @@ section:nth-child(1) .container {
     margin-left: 12.5vw; /* 240px -> 12.5vw */
 }
 
+.imgbox7 img{
+    width: auto;
+}
+
 /* 여덟번째 섹션*/
 .Box8 {
     display: flex;
@@ -1125,7 +1129,7 @@ video {
 .Bg11{
     background-image: url("img/mapbases/map11.png");
     background-repeat: no-repeat;
-    width: 100%;
+    width: 100vw;
     height: auto;
 }
 
@@ -1156,6 +1160,8 @@ video {
 
 .Box11_2{
     display: flex;
+    width: 50%;
+    margin-left: auto;
     flex-direction: row-reverse;
     padding-bottom: 8.9vw; /* 171px -> 8.9vw */
 }
@@ -1585,7 +1591,7 @@ video {
 .scrollbox-1{
     display: flex;
     width: auto;
-    height: 70%;
+    height: 100%;
     margin-top: 6.3vw; /* 90px -> 4.7vw */
 }
 
@@ -1734,6 +1740,12 @@ video {
     height: auto;
 }
 
+.Text21 img{
+    display: flex;
+    width: 70%;
+    height: auto;
+}
+
 .Text21 h1{
     font-size: 24px;
     font-weight: 400;
@@ -1755,7 +1767,8 @@ video {
     display: flex;
     position: relative;
     justify-content: center;
-    width: 100%;
+    margin: 0 auto;
+    width: 35%;
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
