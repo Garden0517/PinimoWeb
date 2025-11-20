@@ -149,7 +149,7 @@ h2{
 
     /* 컨테이너 최대 너비 제한 및 중앙 정렬 */
     .container {
-        /* width: 100vw; /* 콘텐츠가 1920px를 넘지 않도록 제한 */ */
+        /* width: 100vw; 콘텐츠가 1920px를 넘지 않도록 제한 */
         width: 80%; /* 뷰포트 대비 너비 (중앙 마진 확보) */
         margin: 0 auto;
         overflow: hidden;
@@ -450,12 +450,14 @@ section:nth-child(1) .container {
     display: flex;
     position: static;
     width: 100%;
+    height: auto;
     flex-direction: column;
     padding-top: 6.25vw;
 }
 
 .Box3 .first{
     display: flex;
+    width: 100%;
     flex-direction: row;
     margin-bottom: 30px;
 }
@@ -883,6 +885,8 @@ section:nth-child(1) .container {
     background-repeat: no-repeat;
     margin-top: 8.5vw; /* 164px -> 8.5vw */
     margin-left: 12.5vw; /* 240px -> 12.5vw */
+    background-size: cover;
+    background-position: center;
 }
 
 .imgbox7 img{
@@ -955,7 +959,7 @@ video {
 .min91{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 2vw; /* 40px -> 2vw */
@@ -965,7 +969,7 @@ video {
 .min92{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 2vw;
@@ -976,7 +980,7 @@ video {
 .min93{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 500;
     top: 11.6vw;
@@ -986,17 +990,17 @@ video {
 .min94{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 22.4vw; /* 430px -> 22.4vw */
-    left: 6.9%;
+    left: 8.9%;
 }
 
 .min95{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 32.4vw; /* 622px -> 32.4vw */
@@ -1005,7 +1009,7 @@ video {
 .min96{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 42.2vw; /* 811px -> 42.2vw */
@@ -1014,7 +1018,7 @@ video {
 .min97{
     display: flex;
     position: absolute;
-    width: 234px;
+    width: 10%;
     height: auto;
     z-index: 100;
     top: 42.2vw;
@@ -1131,6 +1135,8 @@ video {
     background-repeat: no-repeat;
     width: 100vw;
     height: auto;
+    background-size: cover;
+  background-position: center;
 }
 
 .Box11_1{
@@ -1179,6 +1185,8 @@ video {
 .maprute{
     background-image: url("img/mapbases/rute.png");
     background-repeat: no-repeat;
+    /* background-size: cover; */
+  background-position: center;
 
     /* 초기 상태: 투명하게 숨김 */
     opacity: 0;
@@ -1248,16 +1256,17 @@ video {
 
 .box11{
     background-image: url("img/mapbases/box11.png");
+    background-size: cover;
+  background-position: center;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    width: 50%; /* 800px -> 41.6% */
+    width: 41.6%; /* 800px -> 41.6% */
     height: 14vw; /* 270px -> 14vw (높이도 비례하여 확장) */
     /* max-height: 270px;
     max-width: 800px; */
     justify-content: center;
     align-items: center;
-	margin: 0 auto;
 }
 
 .h11{
@@ -1596,15 +1605,20 @@ video {
     margin-top: 6.3vw; /* 90px -> 4.7vw */
 }
 
-.scroll16 img {
-    height: 100%;
+.scrollbox-1 img{
+    width: auto;
+    height: 100vh;
+}
+
+.scroll1box img {
+    height: 80vh;
     width: auto; /* 높이를 기준으로 너비 자동 조정 */
     transition: transform 0.4s ease-in-out; /* 움직임 효과 */
 }
 
 .phone16{
     display: flex;
-    width: 19.5%;
+    width: 22vw;
     margin: 0 auto;
     justify-content: center;
 }
@@ -1655,7 +1669,7 @@ video {
 }
 
 .Box18 img{
-	display: flex;
+    display: flex;
     width: 50%;
     height: auto;
 }
@@ -1779,8 +1793,4 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
-
 }
-
-
-

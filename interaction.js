@@ -366,7 +366,7 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
     let currentImageIndex = -1; // 현재 표시 중인 이미지 인덱스
     
     // 💡 이미지 전환 기준점: 화면 높이의 20% 지점 (하단에서 위로 80% 올라왔을 때)
-    const imageChangeThreshold = screenHeight * 0.2; 
+    const imageChangeThreshold = screenHeight * 0.5; 
     
     let isScrolling; // 스크롤 중인지 확인하는 플래그
     
