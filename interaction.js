@@ -366,34 +366,32 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
     let currentImageIndex = -1; // 현재 표시 중인 이미지 인덱스
     
     // 💡 이미지 전환 기준점: 화면 높이의 20% 지점 (하단에서 위로 80% 올라왔을 때)
-    // 이 값을 조정하여 전환 타이밍을 조절할 수 있습니다. 
-    // screenHeight * 0.8: 각 텍스트가 화면 하단에서 20%만 올라와도 다음 이미지로 전환
-    const imageChangeThreshold = screenHeight * 0.5; 
+    const imageChangeThreshold = screenHeight * 0.2; 
     
+    let isScrolling; // 스크롤 중인지 확인하는 플래그
+    
+    // 스크롤 핸들러 (기존과 동일)
     function handleScroll() {
         const sectionRect = interactionSection.getBoundingClientRect(); 
         
-        // 1. 섹션이 화면 상단에 닿아 고정되었을 때 (sectionRect.top <= 0)
-        //    그리고 아직 스크롤 영역을 완전히 벗어나지 않았을 때 (sectionRect.bottom > screenHeight)
+        // 1. 섹션이 화면 상단에 닿아 고정되었을 때
         if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
             
-            // 섹션이 화면 상단에 고정된 이후 스크롤된 거리 (음수이므로 절대값)
+            // 섹션이 화면 상단에 고정된 이후 스크롤된 거리 
             let scrollProgress = Math.abs(sectionRect.top);
             
-            // 스크롤 진행도를 최대 이동 거리로 제한하여 오버스크롤 방지
+            // 스크롤 진행도를 최대 이동 거리로 제한
             if (scrollProgress > maxMovement) {
                 scrollProgress = maxMovement;
             }
 
-            // 텍스트 박스 이동: 스크롤 진행도만큼 전체 텍스트 그룹을 위로 이동
+            // 텍스트 박스 이동
             allBox.style.transform = `translateY(-${scrollProgress}px)`;
             
             // ----------------------------------------------------
-            // 💡 2. 이미지 전환 로직 (수정된 부분)
+            // 💡 이미지 전환 로직 (애니메이션 적용)
             // ----------------------------------------------------
             
-            // 이미지 전환 시점 계산: 
-            // 현재 스크롤 진행도에 미리 전환될 거리(imageChangeThreshold)를 더하여 인덱스 계산
             const newIndex = Math.min(
                 totalBoxCount - 1, 
                 Math.floor((scrollProgress + imageChangeThreshold) / screenHeight)
@@ -401,14 +399,64 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
             
             // 이미지가 변경되어야 할 때만 업데이트
             if (newIndex !== currentImageIndex) {
-                targetImage.src = imagePaths[newIndex];
-                currentImageIndex = newIndex;
+                
+                // 1. opacity를 0.2로 설정하여 현재 이미지를 0.3초 동안 흐리게 함 (Fade Out)
+                targetImage.style.opacity = 0.2;
+
+                // 2. 0.3초 후 (CSS transition 시간) 새로운 이미지를 로드하고 다시 opacity를 1로 설정 (Fade In)
+                setTimeout(() => {
+                    targetImage.src = imagePaths[newIndex];
+                    targetImage.style.opacity = 1;
+                    currentImageIndex = newIndex;
+                }, 300); // 300ms는 CSS transition 시간과 일치해야 함
             }
         } 
     }
+
+    // ----------------------------------------------------
+    // 💡 스냅 효과를 위한 스크롤 종료 감지 및 위치 조정 함수
+    // ----------------------------------------------------
+    function snapScroll() {
+        // 스크롤이 끝난 후 150ms가 지나면 실행
+        isScrolling = setTimeout(() => {
+            const sectionRect = interactionSection.getBoundingClientRect(); 
+            
+            // 섹션이 고정되어 있는 상태일 때만 스냅 작동
+            if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
+                let scrollProgress = Math.abs(sectionRect.top);
+                
+                // 현재 스크롤 위치가 몇 번째 박스에 가장 가까운지 계산
+                // 예: 1.2 -> 1, 1.8 -> 2
+                const closestBoxIndex = Math.round(scrollProgress / screenHeight);
+                
+                // 스냅되어야 할 정확한 위치 (스크롤 상단 기준)
+                const snapToPosition = closestBoxIndex * screenHeight;
+                
+                // 실제 스크롤해야 할 윈도우 상단 위치 
+                // snapToPosition은 섹션 내에서 스크롤된 거리이므로, 
+                // 섹션이 시작하는 지점(섹션의 window.offsetTop)에 snapToPosition을 더해야 함
+                const targetScrollY = interactionSection.offsetTop + snapToPosition;
+
+                // 윈도우 스크롤을 목표 위치로 부드럽게 이동
+                window.scrollTo({
+                    top: targetScrollY,
+                    behavior: 'smooth'
+                });
+            }
+        }, 150); // 스크롤 이벤트가 멈춘 후 약간의 딜레이
+    }
     
     // 윈도우 스크롤 이벤트에 핸들러 등록
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', () => {
+        // 스크롤 중에는 스냅 타이머를 초기화
+        clearTimeout(isScrolling);
+        
+        // 텍스트 및 이미지 업데이트 실행
+        handleScroll();
+
+        // 스크롤이 멈췄을 때 스냅이 실행되도록 타이머 설정
+        snapScroll();
+    });
 
     // 페이지 로드 시 첫 번째 이미지를 로드하고 초기 상태 설정
     targetImage.src = imagePaths[0];

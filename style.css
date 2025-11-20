@@ -1303,11 +1303,22 @@ video {
             height: 100vh; /* 화면 높이에 맞추기 */
             overflow: hidden;
         }
-        .img12 img {
+
+         .img12 img {
             max-height: 100%; /* 이미지 크기 조정 */
             width: auto;
             object-fit: contain;
-            transition: opacity 0.3s ease-in-out; /* 이미지 전환 시 부드러운 효과 */
+            /* 💡 수정된 부분: 이미지 전환 시 부드러운 opacity 효과 추가 */
+            transition: opacity 0.5s ease-in-out; 
+            opacity: 1; /* 기본적으로 보이도록 설정 */
+        }
+
+        .black12{
+            width: 50%;
+            height: 280px;
+            position: absolute;
+            z-index: 500;
+            background-image: linear-gradient(rgba(25, 25, 25, 1), rgba(25, 25, 25, 0));
         }
 
 
