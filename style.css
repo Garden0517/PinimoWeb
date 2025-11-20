@@ -14,6 +14,7 @@ body {
     background-color: #191919;
     color: #fff;
     margin: 0; 
+    overflow-x: hidden;
 }
 
 /* 1. 스크롤 바의 너비 정의 */
