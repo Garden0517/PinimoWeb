@@ -908,18 +908,39 @@ section:nth-child(1) .container {
 
 }
 
-.imgbox7{
-    background-image: url("img/service/img.png");
-    background-repeat: no-repeat;
-    margin-top: 8.5vw; /* 164px -> 8.5vw */
-    margin-left: 12.5vw; /* 240px -> 12.5vw */
-    background-size: cover;
-   background-position-x: right;
-   background-position-y: center;
+.imgAll{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 50;
 }
 
-.imgbox7 img{
-    width: auto;
+.imgbox7{
+    width: 100%;
+    height: auto;
+    position: relative;
+    /* background-image: url("img/service/img.png");
+    background-repeat: no-repeat;
+    margin-top: 8.5vw;
+    background-size: cover;
+   background-position-x: left;
+   background-position-y: center; */
+}
+
+.img71{
+    width: 90%;
+    margin-top: 2%;
+}
+
+.img72{
+    width: 90%;
+    margin-top: 8%;
+}
+
+.img73{
+    width: 90%;
+    margin-top: 1%;
 }
 
 /* 여덟번째 섹션*/
