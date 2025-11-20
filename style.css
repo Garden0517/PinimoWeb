@@ -466,52 +466,65 @@ section:nth-child(1) .container {
     flex-direction: row;
 }
 
+.second-word3{
+    width: 100%;
+    height: auto;
+   
+}
+
+.second-word3 img{
+    width: 30%;
+    height: auto;
+     position: absolute;
+    z-index: 100;
+}
+
 .user31{
     display: flex;
     top: 32%;
     left: 31.25%; /* 450px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 .user32{
     display: flex;
     top: 32%;
     left: 68%; /* 979px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 .user33{
     display: flex;
     top: 32%;
     left: 90.9%; /* 1309px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 .user34{
     display: flex;
     top: 60%; /* 358px / 1440px */
     left: 5.5%; /* 79px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 .user35{
     display: flex;
     top: 60%;
     left: 59.4%; /* 856px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 .user36{
     display: flex;
     top: 60%;
     left: 79.4%; /* 1143px / 1440px */
-    position: absolute;
-    z-index: 100;
+    /* position: absolute;
+    z-index: 100; */
 }
 
 
@@ -668,6 +681,8 @@ section:nth-child(1) .container {
 .bar-chart3.active .bar-34 { width: 42%;} 
 .bar-chart3.active .bar-35 { width: 28%;}
 .bar-chart3.active .bar-36 { width: 21%;}
+
+
 
 /* 네번쨰 섹션 */
 .Img4{
@@ -1570,7 +1585,7 @@ video {
 .scrollbox-1{
     display: flex;
     width: auto;
-    height: 100%;
+    height: 70%;
     margin-top: 6.3vw; /* 90px -> 4.7vw */
 }
 
@@ -1582,7 +1597,8 @@ video {
 
 .phone16{
     display: flex;
-    width: 100%;
+    width: 23.5%;
+    margin: 0 auto;
     justify-content: center;
 }
 
@@ -1743,5 +1759,4 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
-
 }
