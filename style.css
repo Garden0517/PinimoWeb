@@ -1654,6 +1654,7 @@ video {
 }
 
 .Box18 img{
+	display: flex;
     width: 50%;
     height: auto;
 }
@@ -1777,4 +1778,5 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
+
 }
