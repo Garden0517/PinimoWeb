@@ -42,7 +42,8 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 /* 스크롤 영역을 확보하기 위해 섹션 높이를 지정 */
 section {
     /* height: 100vh; 제거됨 - 내용물에 따라 높이 자동 조절 */
-    width: 100%;
+    width: 99vw;
+    height: auto;
     padding-top: 5.2vw; /* 섹션 간의 충분한 상단 간격 확보 */
     box-sizing: border-box;
 }
