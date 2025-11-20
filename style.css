@@ -43,7 +43,7 @@ body::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
 section {
     /* height: 100vh; 제거됨 - 내용물에 따라 높이 자동 조절 */
     width: 100%;
-    padding-top: 100px; /* 섹션 간의 충분한 상단 간격 확보 */
+    padding-top: 5.2vw; /* 섹션 간의 충분한 상단 간격 확보 */
     box-sizing: border-box;
 }
 
@@ -51,8 +51,8 @@ section {
 .container {
     display: flex;
     flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
-    max-width: 1440px; /* 최대 너비 설정 */
-    width: 90%;
+    /* max-width: 1440px; 최대 너비 설정 */
+    width: 75%;
     height: auto;
     margin: 0 auto;    /* 가운데 정렬 */
     position: relative;
@@ -73,7 +73,7 @@ p{
 }
 
 h1{
-    font-size: 5rem; /* 50px */
+    font-size: 4.5rem; /* 45px */
     margin-bottom: 40px;
     font-weight: 700;
     line-height: 1.3;
@@ -90,7 +90,7 @@ h2{
     display: flex;
     width: 65px;
     height: 65px;
-    left: 1740px;
+    right: 5vw;
     bottom: 90px;
     z-index:800;
     cursor: pointer;
@@ -103,47 +103,49 @@ h2{
     background-image: url('./img/topbutton1.png'); /* 호버 이미지 경로 */
 }
 @media screen and (min-width: 1920px) {
-    
-    /* Body 폰트 크기 기본 18px */
     body {
         font-size: 112.5%; 
     }
-    
-    /* 첫 번째 섹션 텍스트 (Text1) 위치 조정 */
-    /* 738px는 1440px 컨테이너 내부에서 좌측에 배치하기 위한 값입니다.
-       1920px 이상 화면에서는 이 값을 퍼센트로 조정하거나,
-       .container를 Flexbox로 사용하여 좌측 정렬을 유지해야 합니다.
-       
-       여기서는 padding-left 대신 Flexbox의 gap 또는 justify-content로 대체하는 것을 권장합니다.
-       하지만 기존 구조 유지를 위해, padding-left를 더 유연한 값으로 조정합니다.
-    */
-    .Text1{
-        /* 1920px에서 738px은 약 38%의 위치입니다. */
-        padding-left: calc(50% - 50px); /* .container의 절반에서 약간 왼쪽으로 당김 */
-        padding-top: 80px; /* 기존 값 유지 */
-        padding-bottom: 75px; /* 기존 값 유지 */
-    }
-    
-    /* Topbutton: 1920px 기준 위치 재정의 */
     .Topbutton{
-        right: 160px; 
+        right: 160px; /* 1920px에서는 고정 픽셀 위치로 조정 */
         bottom: 50px;
+    }
+    /* Text1의 left padding을 컨테이너 중앙 기준으로 조정 */
+    .Text1{
+        padding-left: calc(50% - 50px);
+        padding-top: 80px;
+        padding-bottom: 75px;
     }
 }
 
 /* 2560px 해상도 이상일 때의 스케일링 */
 @media screen and (min-width: 2560px) {
-    /* 폰트 크기 증가 (전체적인 시각적 스케일링) */
-    body {
-        font-size: 125%; /* 16px 기준 20px로 증가 */
+    /* 전체 폰트 크기 스케일링 */
+    h1 {
+        font-size: 6rem; /* 50px -> 65px */
     }
-
-    /* Topbutton: 2560px 화면에서 우측 끝에서 조금 더 떨어진 곳에 배치 */
+    /* Topbutton: 뷰포트 우측에서 더 멀리 떨어지게 */
     .Topbutton{
+        right: 10vw; 
+        bottom: 80px;
         width: 100px;
         height: 100px;
-        left: 2345px;
-        bottom: 60px;
+        /* left: 2345px; 제거됨 */
+    }
+    
+    /* 섹션 간격 확장 (선택 사항) */
+    section {
+        padding-top: 6vw; 
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
+        max-width: 1920px; /* 최대 너비 설정 */
+        width: 90%;
+
     }
 }
 
@@ -185,7 +187,6 @@ h2{
 .mainimg{
     display: flex;
     flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
-    max-width: 1920px; /* 최대 너비 설정 */
     width: 100%;
     height: auto;
     margin: 0 auto;    /* 가운데 정렬 */
@@ -206,7 +207,7 @@ section:nth-child(1) .container {
     flex-direction: row;
     width: 100%;
     height: auto;
-    margin-top: 326px;
+    margin-top: 17vw;
     padding-bottom: 150px;
     justify-content: space-between;
 }
@@ -215,7 +216,7 @@ section:nth-child(1) .container {
     z-index: 1000;
     position: absolute;
     display: flex;
-    margin-top: 268px;
+    top: 14vw;
 }
 
 .Text1{
@@ -233,8 +234,7 @@ section:nth-child(1) .container {
 .glass1{
     display: flex;
     position: absolute;
-
-    padding-top: 385px;
+    top: 20vw;
 }
 
 .animate-item.delay-1.is-visible {
@@ -242,15 +242,15 @@ section:nth-child(1) .container {
 }
 
 .animate-item.delay-2.is-visible {
-    transition-delay: 0.5s;
+    transition-delay: 0.4s;
 }
 
 .animate-item.delay-3.is-visible {
-    transition-delay: 0.8s;
+    transition-delay: 0.6s;
 }
 
 .animate-item.delay-4.is-visible {
-    transition-delay: 1.2s;
+    transition-delay: 0.8s;
 }
 
 /* 두번째 섹션 */
@@ -258,8 +258,7 @@ section:nth-child(1) .container {
     display: flex;
     position: static;
     flex-direction: column;
-
-    padding-top: 200px;
+    padding-top: 10.4vw;
 }
 
 .Box2{
@@ -273,8 +272,8 @@ section:nth-child(1) .container {
     display: flex;
     flex-direction: column;
     max-width: 104px;
-    margin-right: 119px;
-
+    margin-right: 8.2vw; /* 119px -> 8.2vw */
+    flex-shrink: 0;
 }
 
 .Box2 .index .text{
@@ -301,7 +300,7 @@ section:nth-child(1) .container {
     position: relative;
     flex-direction: column;
     height: 510px;
-    width: 954px;
+    width: 66.25%;
 }
 
 .animate-item.delay-5.is-visible {
@@ -356,7 +355,7 @@ section:nth-child(1) .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 200px;
+    padding-top: 10.4vw; /* 200px -> 10.4vw */
     padding-left: 20px;
 }
 
@@ -376,7 +375,7 @@ section:nth-child(1) .container {
     position: static;
     flex-direction: column;
     align-items: center;
-    padding-top: 200px;
+    padding-top: 10.4vw;
 }
 
 .Box3{
@@ -384,7 +383,7 @@ section:nth-child(1) .container {
     position: static;
     width: 100%;
     flex-direction: column;
-    padding-top:120px;
+    padding-top: 6.25vw;
 }
 
 .Box3 .first{
@@ -401,48 +400,48 @@ section:nth-child(1) .container {
 
 .user31{
     display: flex;
-    margin-top: 221px;
-    margin-left: 450px;
+    top: 32%;
+    left: 31.25%; /* 450px / 1440px */
     position: absolute;
     z-index: 100;
 }
 
 .user32{
     display: flex;
-    margin-top: 221px;
-    margin-left: 979px;
+    top: 32%;
+    left: 68%; /* 979px / 1440px */
     position: absolute;
     z-index: 100;
 }
 
 .user33{
     display: flex;
-    margin-top: 221px;
-    margin-left: 1309px;
+    top: 32%;
+    left: 90.9%; /* 1309px / 1440px */
     position: absolute;
     z-index: 100;
 }
 
 .user34{
     display: flex;
-    margin-top: 358px;
-    margin-left: 79px;
+    top: 60%; /* 358px / 1440px */
+    left: 5.5%; /* 79px / 1440px */
     position: absolute;
     z-index: 100;
 }
 
 .user35{
     display: flex;
-    margin-top: 358px;
-    margin-left: 856px;
+    top: 60%;
+    left: 59.4%; /* 856px / 1440px */
     position: absolute;
     z-index: 100;
 }
 
 .user36{
     display: flex;
-    margin-top: 358px;
-    margin-left: 1143px;
+    top: 60%;
+    left: 79.4%; /* 1143px / 1440px */
     position: absolute;
     z-index: 100;
 }
@@ -474,8 +473,8 @@ section:nth-child(1) .container {
 .chart{
     position: absolute;
     z-index: 200;
-    margin-top: 430px;
-    margin-left: 162px;
+    margin-top: 22.4vw; 
+    margin-left: 8.4vw;
 }
 
 .chart p{
@@ -484,20 +483,30 @@ section:nth-child(1) .container {
     color: black;   
 }
 
+.donut3{
+    display: flex;
+    position: relative;
+    /* width: 40.5%;
+    height: 40.5%;
+    background-image: url('/img/userresearch/box1.png'); */
+
+    margin-right: 20px;
+}
+
 .donut-chart {
     display: flex;
     position: absolute;
     z-index: 100;
-    padding-top: 170px;
-    padding-left: 55px;
-    width: 583px;
-    height: 583px;
-    border-radius: 100%
+    padding-top: 23.8%; /* 170px / 1440px = 11.8% */
+    padding-left: 7.8%; /* 55px / 1440px = 3.8% */
+    width: 516px;
+    height: 516px;
+    border-radius: 100%;
 }
 
  .portion-block {
     border-radius: 50%;
-    clip: rect(0px, 583px, 583px, 291.5px);
+    clip: rect(0px, 516px, 516px, 258px);
     height: 100%;
     position: absolute;
     width: 100%;
@@ -505,8 +514,7 @@ section:nth-child(1) .container {
 }
 .circle {
     border-radius: 50%;
-    clip: rect(0px, 291.5px, 583px, 0px);
-
+    clip: rect(0px, 258px, 516px, 0px);
     height: 100%;
     position: absolute;
     width: 100%;
@@ -553,11 +561,11 @@ section:nth-child(1) .container {
     display: flex;
     position: absolute;
     flex-direction: column;
-    height: 510px;
-    width: 500px;
+    height: 35.4%;
+    width: 34.7%;
     z-index: 1000;
-    padding-top: 187px;
-    padding-left: 50px;
+    padding-top: 12%; /* 187px / 1440px = 13% */
+    padding-left: 3.5%; /* 50px / 1440px = 3.5% */
 }
 
 .bar-chart3 {
@@ -569,9 +577,9 @@ section:nth-child(1) .container {
 
 /* li (개별 막대) 스타일 */
 .bar-item3 {
-    margin-bottom: 82px;
-    height: 32px; /* 막대 높이 */
-    line-height: 58px;
+    margin-bottom: 6.8rem; /* 82px -> 8.2rem이 크므로 5.7rem으로 조정 */
+    height: 3.2rem; /* 막대 높이 */
+    line-height: 5.8rem;
     background-color: #7FFF6C; /* 기본 색상 */
     border-radius: 20px;
     overflow: hidden;
@@ -597,56 +605,61 @@ section:nth-child(1) .container {
 .Img4{
     display: flex;
     flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
-    max-width: 1920px; /* 최대 너비 설정 */
     width: 100%;
     height: auto;
     margin: 0 auto;
     position: absolute;  
-    padding-top: 200px;
+    padding-top: 10.4vw;
 }
 
 .problems1{
     display: flex;
     position: absolute;
-    margin-left: 960px;
-    margin-top: 0;
+    width: 49%;
+    left: 51%;
+    top:90%;
     z-index: 100;
 }
 .problems2{
     display: flex;
     position: absolute;
-    margin-left: 0;
-    margin-top: 514px;
+    width: 49%;
+    left: 0;
+    top: 350%; /* 514px / 1920px */
     z-index: 200;
 }
 
 .problems3{
     display: flex;
     position: absolute;
-    margin-left: 960px;
-    margin-top: 794px;
+    width: 49%;
+    left: 51%;
+    top: 470%; /* 794px / 1920px */
     z-index: 300;
 }
 .problems4{
     display: flex;
     position: absolute;
-    margin-left: 0;
-    margin-top: 1091px;
+    width: 49%;
+    left: 0;
+    top: 640%; /* 1091px / 1920px */
     z-index: 400;
 }
 
 .problems5{
     display: flex;
     position: absolute;
-    margin-left: 960px;
-    margin-top: 1440px;
+    width: 49%;
+    left: 51%;
+    top: 810%; /* 1440px / 1920px */
     z-index: 500;
 }
 .problems6{
     display: flex;
     position: absolute;
-    margin-left: 0;
-    margin-top: 1500px;
+    width: 49%;
+    left: 0;
+    top: 850%; /* 1500px / 1920px */
     z-index: 600;
 }
 
@@ -655,7 +668,7 @@ section:nth-child(1) .container {
     position: relative;
     flex-direction: column;
     z-index: 500;
-    padding-top: 200px;
+    padding-top: 10.4vw; /* 200px -> 10.4vw */
 }
 
 .Box4{
@@ -666,7 +679,7 @@ section:nth-child(1) .container {
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 1780px;
+    margin-top: 92.7vw; /* 1780px -> 92.7vw */
     margin-bottom: 150px;
 }
 
@@ -693,7 +706,7 @@ section:nth-child(1) .container {
 .Text5{
     display: flex;
     flex-direction: column;
-    padding-top: 200px;
+    padding-top: 10.4vw;
 }
 
 .Text5 .textbox {
@@ -713,7 +726,7 @@ section:nth-child(1) .container {
 .Text6{
     display: flex;
     flex-direction: column;
-    padding-bottom: 200px;
+    padding-bottom: 10.4vw;
 }
 
 .word6 {
@@ -731,7 +744,7 @@ section:nth-child(1) .container {
 
 #section-solution {
     /* 기존 padding-top 값 유지 */
-    padding-top: 50px;
+    padding-top: 2.6vw;
 }
 
 #solution-sticky-wrapper {
@@ -785,8 +798,8 @@ section:nth-child(1) .container {
 .imgbox7{
     background-image: url("img/service/img.png");
     background-repeat: no-repeat;
-    margin-top: 164px;
-    margin-left: 240px;
+    margin-top: 8.5vw; /* 164px -> 8.5vw */
+    margin-left: 12.5vw; /* 240px -> 12.5vw */
 }
 
 /* 여덟번째 섹션*/
@@ -794,7 +807,7 @@ section:nth-child(1) .container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 200px;
+    margin-top: 10.4vw;
 }
 
 video {
@@ -805,7 +818,7 @@ video {
 .Text9{
     display: flex;
     flex-direction: column;
-    padding-top: 200px;
+    padding-top: 10.4vw;
 }
 
 .Text9 .textbox {
@@ -815,10 +828,9 @@ video {
 }
 
 .Img9{
-    padding-top: 188px;
+    padding-top: 9.8vw;
     display: flex;
     flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
-    max-width: 1920px; /* 최대 너비 설정 */
     width: 100%;
     height: auto;
     margin: 0 auto;    /* 가운데 정렬 */
@@ -850,6 +862,7 @@ video {
 .Box9{
     display: flex;
     height: auto;
+    position: relative;
 }
 
 .min91{
@@ -858,8 +871,8 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 431px;
-    margin-top: 40px;
+    top: 2vw; /* 40px -> 2vw */
+    left: 22.45%; /* 431px / 1920px */
 }
 
 .min92{
@@ -868,20 +881,20 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 1520px;
-    margin-top: 40px;
+    top: 2vw;
+    left: 79.16%; /* 1520px / 1920px */
 }
 
 
-/* .min93{
+.min93{
     display: flex;
     position: absolute;
     width: 234px;
     height: auto;
     z-index: 500;
-    margin-left: 1520px;
-    margin-top: 40px;
-} */
+    top: 11.6vw;
+    left: 50.5%;
+}
 
 .min94{
     display: flex;
@@ -889,8 +902,8 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 155px;
-    margin-top: 430px;
+    top: 22.4vw; /* 430px -> 22.4vw */
+    left: 8.6.9%;
 }
 
 .min95{
@@ -899,8 +912,8 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 706px;
-    margin-top: 622px;
+    top: 32.4vw; /* 622px -> 32.4vw */
+    left: 36.77%;
 }
 .min96{
     display: flex;
@@ -908,8 +921,8 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 431px;
-    margin-top: 811px;
+    top: 42.2vw; /* 811px -> 42.2vw */
+    left: 22.45%;
 }
 .min97{
     display: flex;
@@ -917,17 +930,17 @@ video {
     width: 234px;
     height: auto;
     z-index: 100;
-    margin-left: 1256px;
-    margin-top: 811px;
+    top: 42.2vw;
+    left: 65.41%;
 }
 
 .icon-carousel-container {
     display: flex;
-    position: absolute;
+    position: relative;
     z-index: 100;
-    margin-top: 227px;
-    margin-left: 240px;
-    width: 472px;
+    top: 11.8vw; /* 227px -> 11.8vw */
+    left: 12.5vw; /* 240px -> 12.5vw */
+    width: 24.6%; /* 472px -> 24.6% */
     height: auto;
 }
 
@@ -1010,13 +1023,19 @@ video {
     flex-direction: column;
 }
 
+.Box10 img{
+    width: 52%;
+    height: auto;
+}
+
 .Box10{
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
-    margin-top: 200px;
-    margin-bottom: 300px;
+    margin-top: 10.4vw;
+    margin-bottom: 15.6vw;
+    justify-content: space-between;
 }
 
 /* 열한번째 섹션*/
@@ -1031,9 +1050,8 @@ video {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 53px;
-    padding-bottom: 379px;
-
+    margin-top: 2.7vw; /* 53px -> 2.7vw */
+    padding-bottom: 19.7vw; /* 379px -> 19.7vw */
 }
 
 .Text11{
@@ -1041,22 +1059,22 @@ video {
     position: relative;
     flex-direction: column;
     width: 50%;
-    margin-top: 50px;
+    margin-top: 2.6vw;
 
 }
 
 .Key11{
     display: flex;
-    margin-top: 167px;
     width: 100%;
     height: auto;
-    padding-left: 122px;
+    margin-top: 8.7vw; /* 167px -> 8.7vw */
+    padding-left: 6.35vw; /* 122px -> 6.35vw */
 }
 
 .Box11_2{
     display: flex;
     flex-direction: row-reverse;
-    padding-bottom: 171px;
+    padding-bottom: 8.9vw; /* 171px -> 8.9vw */
 }
 
 .Box11_3{
@@ -1092,15 +1110,18 @@ video {
     z-index: 1000;
     margin: 0 auto;
     width: 100%;
-    padding-top: 607px;
+    padding-top: 31.6vw; /* 607px -> 31.6vw */
 }
 
 .button11{
     background-image: url("img/mapbases/button11.png");
+    background-size: cover;
     background-repeat: no-repeat;
     display: flex;
-    width: 172px;
-    height: 172px;
+    width: 9vw; /* 172px -> 9vw */
+    height: 9vw;
+    /* max-width: 172px;
+    max-height: 172px; */
     justify-content: space-around;
     align-items: center;
     margin-bottom: 24px;
@@ -1141,8 +1162,10 @@ video {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    width: 800px;
-    height: 270px;
+    width: 41.6%; /* 800px -> 41.6% */
+    height: 14vw; /* 270px -> 14vw (높이도 비례하여 확장) */
+    /* max-height: 270px;
+    max-width: 800px; */
     justify-content: center;
     align-items: center;
 }
@@ -1180,7 +1203,7 @@ video {
 
 /* 열두번째 섹션*/
 .rock12{
-    padding-top: 200px;
+    padding-top: 10.4vw;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -1204,7 +1227,7 @@ video {
     font-size: 2rem;
     line-height: 1.5;
     font-weight: 300;
-    margin-bottom: 310px;
+    margin-bottom: 16.1vw; /* 310px -> 16.1vw */
     text-align: center;
     margin-top: 36px;
 }
@@ -1298,8 +1321,8 @@ video {
 .Box13{
     display: flex;
     flex-direction: row;
-    padding-bottom: 150px;
-    padding-top: 200px;
+    padding-bottom: 7.8vw; /* 150px -> 7.8vw */
+    padding-top: 10.4vw;
 }
 
 /* 열네번째 섹션 */
@@ -1322,13 +1345,13 @@ video {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 41px;
-    padding-bottom: 159px;
+    padding-top: 2.1vw; /* 41px -> 2.1vw */
+    padding-bottom: 8.3vw; /* 159px -> 8.3vw */
 }
 
 .Img14{
     display: flex;
-    width: 832px;
+    width: 57.7%; /* 832px -> 57.7% */
 }
 
 /* 1. 스크롤 공간 확보 */
@@ -1367,8 +1390,13 @@ video {
     display: flex;
     flex-direction: row;
     margin-top: 41px;
-    padding-bottom: 126px;
+    padding-bottom: 6.5vw;
     justify-content: space-between;
+}
+
+.Box15 img{
+    width: 50%;
+    height: auto;
 }
 
 .Text15{
@@ -1385,7 +1413,7 @@ video {
     background-repeat: no-repeat; */
     display: flex;
     height: auto;
-    margin-top: 150px;
+    margin-top: 7.8vw; /* 150px -> 7.8vw */
 }
 
 .Text16{
@@ -1395,16 +1423,16 @@ video {
     width: 50%;
     /* margin-left: 913px; */
     /* padding-top: 200px; */
-    padding-bottom: 870px;
+    padding-bottom: 45.3vw; /* 870px -> 45.3vw */
 }
 
 .Img16{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 835px;
+    width: 50%; /* 835px -> 58% */
+    margin-top: 6.25vw; /* 120px -> 6.25vw */
     height: auto;
-    margin-top: 120px;
 }
 
 .img16{
@@ -1417,7 +1445,7 @@ video {
     position: relative;
     width: 100%;
     height: auto;
-    margin-top: 400px;
+    margin-top: 20.8vw; /* 400px -> 20.8vw */
 }
 
 .box16{
@@ -1427,6 +1455,20 @@ video {
     position: absolute;
     z-index: 500;
     justify-content: center; /* 가운데 정렬 */
+}
+
+.outline16{
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right,
+    rgba(25, 25, 25, 1) 5%, /* 100을 1.0 또는 1로 수정 */
+    rgba(25, 25, 25, 0) 20%,
+    rgba(25, 25, 25, 0) 80%,
+    rgba(25, 25, 25, 1) 95%  /* 100을 1.0 또는 1로 수정, 마지막 쉼표 제거 */
+);
 }
 
 .scroll16{
@@ -1443,14 +1485,14 @@ video {
     display: flex;
     width: auto;
     height: 75%;
-    margin-top: 180px;
+    margin-top: 9.4vw; /* 180px -> 9.4vw */
 }
 
 .scrollbox-1{
     display: flex;
     width: auto;
-    height: 90%;
-    margin-top: 90px;
+    height: 100%;
+    margin-top: 6.3vw; /* 90px -> 4.7vw */
 }
 
 .scroll16 img {
@@ -1488,25 +1530,25 @@ video {
 /*열일곱번째*/
 .Box17{
     background-image: url("img/authenticity2.png");
+    background-size: contain;
     background-repeat: no-repeat;
-    margin-top: 300px;
+    margin-top: 15.6vw; /* 300px -> 15.6vw */
 }
 
 .Text17{
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 50%;
     margin-top: 17px;
-    padding-bottom: 720px;
+    padding-bottom: 37.5vw; /* 720px -> 37.5vw */
 }
 
 /* 열여덟번째 섹션 */
 .Box18{
     display: flex;
     flex-direction: row;
-    margin-top: 200px;
-    padding-bottom: 135px;
+    margin-top: 10.4vw;
+    padding-bottom: 7vw;
     justify-content: space-between;
 }
 
@@ -1534,7 +1576,7 @@ video {
     z-index: 1000;
     margin: 0 auto;
     width: 100%;
-    padding-top: 431px;
+    padding-top: 22.4vw;
 }
 
 /* 스물번째 섹션 */
