@@ -560,12 +560,12 @@ section:nth-child(1) .container {
 .chart{
     position: absolute;
     z-index: 200;
-    margin-top: 22.4vw; 
-    margin-left: 8.4vw;
+    margin-top: 30%;
+    margin-left: 12%;
 }
 
 .chart p{
-    font-size: 40px;
+    font-size: 4rem;
     font-weight: 500;
     color: black;   
 }
@@ -580,67 +580,12 @@ section:nth-child(1) .container {
     margin-right: 20px;
 }
 
-.donut-chart {
+.dount31{
+    margin-top: 24%;
+    margin-left: 8%;
+    width: 51%;
     display: flex;
     position: absolute;
-    z-index: 100;
-    padding-top: 23.8%; /* 170px / 1440px = 11.8% */
-    padding-left: 7.8%; /* 55px / 1440px = 3.8% */
-    width: 516px;
-    height: 516px;
-    border-radius: 100%;
-}
-
- .portion-block {
-    border-radius: 50%;
-    clip: rect(0px, 516px, 516px, 258px);
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    transform-origin: 50% 50%;
-}
-.circle {
-    border-radius: 50%;
-    clip: rect(0px, 258px, 516px, 0px);
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    transform-origin: 50% 50%;
-}
-	
-	
-#part1 {
-    transform: rotate(-180deg);
-  }
-
-#part1 .circle {
-	background-color: #7FFF6C;
-	/*transform: rotate(90deg);*/
-}
-    
-#part2 {
-    transform: rotate(10deg);
-  }
-#part2 .circle {
-    background-color: #7FFF6C;
-}
-
-.animated-chart.animate #part1 .circle {
-    animation: first 1s 1 forwards;
-}
-
-.animated-chart.animate #part2 .circle {
-    /* 기존에 있던 delay(0.68s)를 포함하여 애니메이션 재적용 */
-    animation: second 0.7s 1 forwards 0.68s;
-}
-
-@keyframes first {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(-180deg);}
-}
-@keyframes second {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(-25deg);}
 }
 
 .Bar3{

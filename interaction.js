@@ -684,3 +684,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. 일정 시간 간격으로 changeDifferentImages 함수 실행
     setInterval(changeDifferentImages, intervalTime);
 });
+
