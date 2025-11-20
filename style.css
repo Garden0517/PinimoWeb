@@ -229,7 +229,7 @@ section:nth-child(1) .container {
 
 .img1{
     display: flex;
-	width: 53%;
+    width: 53%;
     height: auto;
 }
 
@@ -1629,7 +1629,7 @@ video {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     justify-content: space-between;
 }
 
@@ -1656,6 +1656,14 @@ video {
     color: #fff;
     margin-top: 0px;
     text-align: center;
-
 }
 
+.end21{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
