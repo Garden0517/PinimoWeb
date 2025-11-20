@@ -10,7 +10,7 @@ html {
 
 /* body는 기본 환경 설정 */
 body {
-    font-family: Pretendard;
+    font-family: Pretendard, sans-serif;
     background-color: #191919;
     color: #fff;
     margin: 0; 
@@ -1677,4 +1677,5 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
+
 }
