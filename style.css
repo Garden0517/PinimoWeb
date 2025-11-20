@@ -149,7 +149,7 @@ h2{
 
     /* 컨테이너 최대 너비 제한 및 중앙 정렬 */
     .container {
-        max-width: 100vw; /* 콘텐츠가 1920px를 넘지 않도록 제한 */
+        width: 100vw; /* 콘텐츠가 1920px를 넘지 않도록 제한 */
         width: 80%; /* 뷰포트 대비 너비 (중앙 마진 확보) */
         margin: 0 auto;
         overflow: hidden;
@@ -1781,4 +1781,5 @@ video {
     margin-bottom: 100px;
 
 }
+
 
