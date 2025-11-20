@@ -229,6 +229,8 @@ section:nth-child(1) .container {
 
 .img1{
     display: flex;
+	width: 53%;
+    height: auto;
 }
 
 .glass1{
@@ -1656,3 +1658,4 @@ video {
     text-align: center;
 
 }
+
