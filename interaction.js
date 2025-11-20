@@ -361,7 +361,7 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
     
     // 텍스트 이동이 필요한 총 거리 (마지막 박스까지 스크롤될 거리)
     // (총 박스 수 - 1) * 100vh
-    const maxMovement = ((totalBoxCount - 1) * screenHeight) + (screenHeight * 0.5);
+    const maxMovement = ((totalBoxCount - 1) * screenHeight);
     
     let currentImageIndex = -1; // 현재 표시 중인 이미지 인덱스
     
