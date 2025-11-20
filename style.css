@@ -120,32 +120,96 @@ h2{
 
 /* 2560px 해상도 이상일 때의 스케일링 */
 @media screen and (min-width: 2560px) {
-    /* 전체 폰트 크기 스케일링 */
+    /* 폰트 크기 스케일링 */
     h1 {
-        font-size: 6rem; /* 50px -> 65px */
+        font-size: 6rem; /* 60px */
     }
+    h2 {
+        font-size: 2.5rem; /* 25px */
+    }
+    p {
+        font-size: 2.2rem; /* 22px */
+    }
+
     /* Topbutton: 뷰포트 우측에서 더 멀리 떨어지게 */
     .Topbutton{
         right: 10vw; 
         bottom: 80px;
         width: 100px;
         height: 100px;
-        /* left: 2345px; 제거됨 */
     }
     
-    /* 섹션 간격 확장 (선택 사항) */
+    /* 섹션 간격 확장 */
     section {
         padding-top: 6vw; 
         width: 100%;
         box-sizing: border-box;
     }
 
+    /* 컨테이너 최대 너비 제한 및 중앙 정렬 */
     .container {
-        display: flex;
-        flex-direction: column; /* 기본적으로 요소들을 세로로 쌓습니다. */
-        max-width: 1920px; /* 최대 너비 설정 */
-        width: 90%;
+        max-width: 1920px; /* 콘텐츠가 1920px를 넘지 않도록 제한 */
+        width: 80%; /* 뷰포트 대비 너비 (중앙 마진 확보) */
+        margin: 0 auto;
+    }
 
+    /* 첫 번째 섹션 텍스트 위치 조정 (Text1) */
+    .Box1{
+        margin-top: 15vw; /* 전체적으로 상단 여백을 줄임 */
+    }
+    .Text1{
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+
+    /* 두 번째 섹션: 바 차트 인덱스 간격 조정 */
+    .Box2 .index {
+        margin-right: 100px; 
+    }
+    .Box2 .table {
+        height: 600px; /* 차트 높이 확장 */
+    }
+    
+    /* 세 번째 섹션: 도넛 차트 크기 및 위치 조정 (vw 기반이었으므로 상대적으로 커짐) */
+    .donut-chart {
+        width: 600px;
+        height: 600px;
+        padding-top: 25%;
+        padding-left: 8%;
+    }
+    .portion-block {
+        clip: rect(0px, 600px, 600px, 300px);
+    }
+    .circle {
+        clip: rect(0px, 300px, 600px, 0px);
+    }
+
+    /* Box10 이미지 크기 조정 */
+    .Box10 img{
+        width: 45%; /* 이미지 크기를 줄여 텍스트와의 공간 확보 */
+    }
+    
+    /* 열여섯번째 섹션 이미지 조정 */
+    .Img16 {
+        margin-top: 4vw; /* 상단 여백 조정 */
+    }
+
+    /* 열일곱번째 섹션 배경 크기 조정 */
+    .Box17{
+        /* background-size가 contain이므로 이미지가 커져서 padding-bottom을 늘려야 함 */
+        padding-bottom: 45vw; /* 720px -> 45vw로 확장 */
+    }
+    
+    /* Box21 (팀원 소개) 간격 조정 */
+    .Box21{
+        height: 60vh; /* 높이 조정 */
+        margin-top: 5vw;
+    }
+
+    /* Box4 (Conclusion) 마진 조정 */
+    .Box4{
+        margin-top: 100vw; /* 이미지 영역 확장으로 인한 마진 조정 (기존 92.7vw) */
+        margin-bottom: 200px;
     }
 }
 
@@ -1677,5 +1741,4 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
-
 }
