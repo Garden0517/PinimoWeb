@@ -416,35 +416,35 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
     // ----------------------------------------------------
     // 💡 스냅 효과를 위한 스크롤 종료 감지 및 위치 조정 함수
     // ----------------------------------------------------
-    function snapScroll() {
-        // 스크롤이 끝난 후 150ms가 지나면 실행
-        isScrolling = setTimeout(() => {
-            const sectionRect = interactionSection.getBoundingClientRect(); 
+    // function snapScroll() {
+    //     // 스크롤이 끝난 후 150ms가 지나면 실행
+    //     isScrolling = setTimeout(() => {
+    //         const sectionRect = interactionSection.getBoundingClientRect(); 
             
-            // 섹션이 고정되어 있는 상태일 때만 스냅 작동
-            if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
-                let scrollProgress = Math.abs(sectionRect.top);
+    //         // 섹션이 고정되어 있는 상태일 때만 스냅 작동
+    //         if (sectionRect.top <= 0 && sectionRect.bottom > screenHeight) {
+    //             let scrollProgress = Math.abs(sectionRect.top);
                 
-                // 현재 스크롤 위치가 몇 번째 박스에 가장 가까운지 계산
-                // 예: 1.2 -> 1, 1.8 -> 2
-                const closestBoxIndex = Math.round(scrollProgress / screenHeight);
+    //             // 현재 스크롤 위치가 몇 번째 박스에 가장 가까운지 계산
+    //             // 예: 1.2 -> 1, 1.8 -> 2
+    //             const closestBoxIndex = Math.round(scrollProgress / screenHeight);
                 
-                // 스냅되어야 할 정확한 위치 (스크롤 상단 기준)
-                const snapToPosition = closestBoxIndex * screenHeight;
+    //             // 스냅되어야 할 정확한 위치 (스크롤 상단 기준)
+    //             const snapToPosition = closestBoxIndex * screenHeight;
                 
-                // 실제 스크롤해야 할 윈도우 상단 위치 
-                // snapToPosition은 섹션 내에서 스크롤된 거리이므로, 
-                // 섹션이 시작하는 지점(섹션의 window.offsetTop)에 snapToPosition을 더해야 함
-                const targetScrollY = interactionSection.offsetTop + snapToPosition;
+    //             // 실제 스크롤해야 할 윈도우 상단 위치 
+    //             // snapToPosition은 섹션 내에서 스크롤된 거리이므로, 
+    //             // 섹션이 시작하는 지점(섹션의 window.offsetTop)에 snapToPosition을 더해야 함
+    //             const targetScrollY = interactionSection.offsetTop + snapToPosition;
 
-                // 윈도우 스크롤을 목표 위치로 부드럽게 이동
-                window.scrollTo({
-                    top: targetScrollY,
-                    behavior: 'smooth'
-                });
-            }
-        }, 150); // 스크롤 이벤트가 멈춘 후 약간의 딜레이
-    }
+    //             // 윈도우 스크롤을 목표 위치로 부드럽게 이동
+    //             window.scrollTo({
+    //                 top: targetScrollY,
+    //                 behavior: 'smooth'
+    //             });
+    //         }
+    //     }, 150); // 스크롤 이벤트가 멈춘 후 약간의 딜레이
+    // }
     
     // 윈도우 스크롤 이벤트에 핸들러 등록
     window.addEventListener('scroll', () => {
