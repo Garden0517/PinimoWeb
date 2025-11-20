@@ -366,7 +366,7 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
     let currentImageIndex = -1; // 현재 표시 중인 이미지 인덱스
     
     // 💡 이미지 전환 기준점: 화면 높이의 20% 지점
-    const imageChangeThreshold = screenHeight * 0.5; 
+    // const imageChangeThreshold = screenHeight * 0.5; 
     
     let isScrolling; // 스크롤 중인지 확인하는 플래그
     
@@ -393,23 +393,23 @@ if (connectionWrapper && connectionImage && connectionSection && connectionTextC
             // ----------------------------------------------------
             
             const newIndex = Math.min(
-                totalBoxCount - 1, 
-                Math.floor((scrollProgress + imageChangeThreshold) / screenHeight)
-            );
+            totalBoxCount - 1, 
+            Math.round(scrollProgress / screenHeight)
+        );
+        
+        // 이미지가 변경되어야 할 때만 업데이트
+        if (newIndex !== currentImageIndex) {
             
-            // 이미지가 변경되어야 할 때만 업데이트
-            if (newIndex !== currentImageIndex) {
-                
-                // 1. opacity를 0.2로 설정하여 현재 이미지를 0.3초 동안 흐리게 함 (Fade Out)
-                targetImage.style.opacity = 0.2;
+            // 1. opacity를 0.2로 설정하여 현재 이미지를 0.3초 동안 흐리게 함 (Fade Out)
+            targetImage.style.opacity = 0.2;
 
-                // 2. 0.3초 후 (CSS transition 시간) 새로운 이미지를 로드하고 다시 opacity를 1로 설정 (Fade In)
-                setTimeout(() => {
-                    targetImage.src = imagePaths[newIndex];
-                    targetImage.style.opacity = 1;
-                    currentImageIndex = newIndex;
-                }, 300); // 300ms는 CSS transition 시간과 일치해야 함
-            }
+            // 2. 0.3초 후 새로운 이미지를 로드하고 다시 opacity를 1로 설정 (Fade In)
+            setTimeout(() => {
+                targetImage.src = imagePaths[newIndex];
+                targetImage.style.opacity = 1;
+                currentImageIndex = newIndex;
+            }, 300); // 300ms는 CSS transition 시간과 일치해야 함
+        }
         } 
     }
 
