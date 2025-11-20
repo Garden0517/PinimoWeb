@@ -903,7 +903,7 @@ video {
     height: auto;
     z-index: 100;
     top: 22.4vw; /* 430px -> 22.4vw */
-    left: 8.6.9%;
+    left: 6.9%;
 }
 
 .min95{
@@ -1654,4 +1654,5 @@ video {
     color: #fff;
     margin-top: 0px;
     text-align: center;
+
 }
