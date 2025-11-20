@@ -1251,12 +1251,13 @@ video {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    width: 41.6%; /* 800px -> 41.6% */
+    width: 50%; /* 800px -> 41.6% */
     height: 14vw; /* 270px -> 14vw (높이도 비례하여 확장) */
     /* max-height: 270px;
     max-width: 800px; */
     justify-content: center;
     align-items: center;
+	margin: 0 auto;
 }
 
 .h11{
@@ -1780,3 +1781,4 @@ video {
     margin-bottom: 100px;
 
 }
+
