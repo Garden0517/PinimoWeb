@@ -123,7 +123,7 @@ h2{
 @media screen and (min-width: 2560px) {
     /* 폰트 크기 스케일링 */
     h1 {
-        font-size: 8rem; /* 60px */
+        font-size: 7rem; /* 60px */
     }
     h2 {
         font-size: 3.6rem; /* 25px */
@@ -1653,6 +1653,11 @@ video {
     justify-content: space-between;
 }
 
+.Box18 img{
+    width: 50%;
+    height: auto;
+}
+
 .Text18{
     display: flex;
     position: relative;
@@ -1772,5 +1777,4 @@ video {
     height: auto;
     margin-top: 20px;
     margin-bottom: 100px;
-
 }
