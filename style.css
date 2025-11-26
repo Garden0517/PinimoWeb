@@ -424,7 +424,7 @@ section:nth-child(1) .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 10.4vw; /* 200px -> 10.4vw */
+    padding-top: 3vw; /* 200px -> 10.4vw */
     padding-left: 20px;
 }
 
@@ -444,7 +444,7 @@ section:nth-child(1) .container {
     position: static;
     flex-direction: column;
     align-items: center;
-    padding-top: 3vw;
+    padding-top: 10.4vw;
 }
 
 .Box3{
