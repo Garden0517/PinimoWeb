@@ -349,7 +349,7 @@ section:nth-child(1) .container {
     display: flex;
     flex-direction: column;
     height: auto;
-    margin-bottom: 24px;
+    margin-bottom: 5rem;
 }
 
 .Box2 .index .text h1{
@@ -1592,30 +1592,30 @@ video {
     width: 100%;
     height: auto;
     flex-wrap: nowrap;
-    gap: 90px; /* 이미지 간격 (기존 margin 값 활용) */
+    gap: 5vw;
 }
 
 .scrollbox{
-    display: flex;
-    width: auto;
-    height: 75%;
+    width: 100%;
+    height: auto;
     margin-top: 9.4vw; /* 180px -> 9.4vw */
 }
 
 .scrollbox-1{
-    display: flex;
-    width: auto;
-    height: 100%;
-    margin-top: 6.3vw; /* 90px -> 4.7vw */
+    width: 135%;
+    height: auto;
+    margin-top: 7%; /* 90px -> 4.7vw */
 }
 
 .scrollbox-1 img{
-    width: auto;
-    height: 105vh;
+    display: flex;
+    width: 100%;
+    height: auto;
 }
 
 .scroll1box img {
-    height: 80vh;
+    display: flex;
+    height: 20%;
     width: auto; /* 높이를 기준으로 너비 자동 조정 */
     transition: transform 0.4s ease-in-out; /* 움직임 효과 */
 }
