@@ -444,7 +444,7 @@ section:nth-child(1) .container {
     position: static;
     flex-direction: column;
     align-items: center;
-    padding-top: 10.4vw;
+    padding-top: 3vw;
 }
 
 .Box3{
