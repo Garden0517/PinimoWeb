@@ -353,13 +353,13 @@ section:nth-child(1) .container {
 }
 
 .Box2 .index .text h1{
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 0px;
     font-weight: 500;
 }
 
 .Box2 .index .text h2{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 0px;
     font-weight: 300;    
 }
