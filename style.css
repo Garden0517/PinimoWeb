@@ -69,20 +69,20 @@ img, video {
 }
 
 p{
-    font-size: 2rem; /* 20px */
+    font-size: 1.7rem; /* 20px */
     line-height: 1.5;
     font-weight: 300;
 }
 
 h1{
-    font-size: 4.5rem; /* 45px */
+    font-size: 4rem; /* 45px */
     margin-bottom: 40px;
     font-weight: 700;
     line-height: 1.3;
 }
 
 h2{
-    font-size: 2rem; /* 20px */
+    font-size: 1.7rem; /* 20px */
     margin-bottom: 20px;
     font-weight: 500;    
 }
@@ -386,8 +386,8 @@ section:nth-child(1) .container {
 
 /* li (개별 막대) 스타일 */
 .bar-item {
-    margin-bottom: 34px;
-    height: 58px; /* 막대 높이 */
+    margin-bottom: 5vh;
+    height: 5vh; /* 막대 높이 */
     line-height: 58px;
     background-color: #7FFF6C; /* 기본 색상 */
     border-radius: 20px;
@@ -1279,7 +1279,7 @@ video {
 }
 
 .h11 h1{
-    font-size: 7rem;
+    font-size: 5.5rem;
     line-height: 1.5;
     font-weight: 700;
     margin-bottom: 0;
@@ -1318,7 +1318,7 @@ video {
 }
 
 .rock12 h1{
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 1.3;
     font-weight: 600;
     margin-bottom: 0;
@@ -1327,7 +1327,7 @@ video {
 }
 
 .rock12 p{
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 1.5;
     font-weight: 300;
     margin-bottom: 16.1vw; /* 310px -> 16.1vw */
