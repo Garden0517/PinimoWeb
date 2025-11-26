@@ -5,7 +5,7 @@
 }
 
 html {
-    font-size: 62.5%; /* 16px * 0.625 = 10px */
+    font-size: 50.5%; /* 16px * 0.625 = 10px */
 }
 
 /* body는 기본 환경 설정 */
@@ -479,7 +479,7 @@ section:nth-child(1) .container {
 }
 
 .second-word3 img{
-    width: 30%;
+    width: 25%;
     height: auto;
      position: absolute;
     z-index: 100;
@@ -487,7 +487,7 @@ section:nth-child(1) .container {
 
 .user31{
     display: flex;
-    margin-top: 12%;
+    margin-top: 14%;
     left: 20%; /* 450px / 1440px */
     /* position: absolute;
     z-index: 100; */
@@ -495,7 +495,7 @@ section:nth-child(1) .container {
 
 .user32{
     display: flex;
-    margin-top: 12%;
+    margin-top: 14%;
     left: 48%; /* 979px / 1440px */
     /* position: absolute;
     z-index: 100; */
@@ -503,7 +503,7 @@ section:nth-child(1) .container {
 
 .user33{
     display: flex;
-    margin-top: 12%;
+    margin-top: 14%;
     left: 69%; /* 1309px / 1440px */
     /* position: absolute;
     z-index: 100; */
@@ -1160,6 +1160,14 @@ video {
     padding-left: 6.35vw; /* 122px -> 6.35vw */
 }
 
+.BoxImg11{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 70%;
+    height: auto;
+    margin-top: 7vw;
+}
+
 .Box11_2{
     display: flex;
     width: 50%;
@@ -1510,7 +1518,7 @@ video {
     position: relative;
     flex-direction: column;
     width: 50%;
-    margin-top: 322px;
+    margin-top: 8vw;
 }
 
 /* 열여섯번째 섹션 */
@@ -1603,7 +1611,7 @@ video {
 
 .scrollbox-1 img{
     width: auto;
-    height: 100vh;
+    height: 105vh;
 }
 
 .scroll1box img {
@@ -1764,7 +1772,7 @@ video {
 }
 
 .Text21 h1{
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: 400;
     color: #fff;
     margin-top: 40px;
@@ -1773,7 +1781,7 @@ video {
 }
 
 .Text21 p{
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: 400;
     color: #fff;
     margin-top: 0px;
