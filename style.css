@@ -431,7 +431,7 @@ section:nth-child(1) .container {
 .Box2 .etc p{
     position: absolute;
     z-index: 500;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 0;
     font-weight: 500;
     color: #7FFF6C;
